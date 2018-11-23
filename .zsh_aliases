@@ -1,0 +1,45 @@
+#!/bin/zsh
+
+# Edit and load dotfiles
+alias dotedit="code -n ~/dotfiles"
+alias load="source ~/.zshrc"
+
+# Navigation
+alias desk="cd ~/desktop"
+alias dot="cd ~/dotfiles"
+
+alias w="cd ~/work"
+
+alias cnd="cd ~/work/cnd"
+alias ec2="cd ~/work/ec2worker"
+alias ecw="cd ~/work/edu-chimera-widgets"
+alias g="cd ~/work/guide"
+alias gp="cd ~/work/gradprograms"
+alias gr="cd ~/work/gradreports"
+alias gtos="cd ~/work/gtos"
+alias guide="cd ~/work/guide"
+alias h2b="cd ~/work/howtobecome"
+alias hg="cd ~/work/hydragem"
+alias lh="cd ~/work/lighthouse"
+alias or="cd ~/work/outreach"
+alias ou="cd ~/work/onlineu"
+alias ra="cd ~/work/reach-admin"
+alias sr="cd ~/work/sr_corp"
+alias st="cd ~/work/search-terms"
+
+# Shortcuts
+alias c="git checkout"
+alias d="git diff"
+alias s="git status"
+
+alias b="bundle"
+alias be="bundle exec"
+alias deploy='bundle exec cap production deploy'
+alias stage='bundle exec cap staging deploy'
+alias spow='touch ~/.pow/restart.txt'
+
+alias rc="redis-commander"
+alias rc_tunnel="ssh -N -L 7979:$REDIS_HOST:7979 charon-edu"
+
+alias degreepage_tunnel="ssh -N -L 3305:$DEGREEPAGE_HOST:3306 acheron1-edu"
+alias sql_live="mysql -u$DEGREEPAGE_USER -p$DEGREEPAGE_PASSWORD --port=3305 --host=127.0.0.1"

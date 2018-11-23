@@ -1,0 +1,23 @@
+#!/bin/bash
+# This script creates symlinks from the home directory to any dotfiles in ~/dotfiles
+
+echo "Starting"
+mkdir -p ~/dotfiles_old
+
+regex="[^/]*$"
+for file in ~/dotfiles/.* # Only match hidden files
+do
+  if [[ -f $file ]]
+  then
+    if [[ $file =~ $regex ]]
+    then
+      filename="${BASH_REMATCH[0]}"
+      mv -n ~/$filename ~/dotfiles_old/$filename
+      rm ~/$filename
+      ln -s $file ~/$filename
+    fi
+  fi
+done
+
+chsh -s /bin/zsh
+echo "Done"

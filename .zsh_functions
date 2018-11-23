@@ -1,0 +1,109 @@
+#!/bin/zsh
+
+# Copy database rows from the live degreepage database to the local degreepage database
+#
+# @param [$1] The table to copy rows from
+# @param [$2] A query to filter the rows by
+get_rows() {
+  echo -e 'Downloading data'
+  mysqldump --no-create-info --skip-triggers --insert-ignore --host=127.0.0.1 --port=3305 --user=reach -p degreepage $1  --where="$2" > ~/desktop/$1.sql
+
+  echo -e 'Importing data'
+  mysql -u root degreepage < ~/desktop/$1.sql
+
+  echo -e 'Deleting file'
+  rm ~/desktop/$1.sql
+}
+
+# Import a database from a file on the desktop
+#
+# @param [$1] The database name
+update_database() {
+  database = $1
+
+  echo "Unzipping file..."
+  gunzip -c ~/desktop/$database.*.sql.gz > ~/desktop/$database.sql
+  echo "Deleting $database-old database..."
+  mysqladmin -u root -f drop $database-old
+  echo "Backing up $database database..."
+  mysql -u root $database -sNe 'show tables' | while read table;
+  do mysql -u root -sNe "rename table $database.$table to $database-old.$table"; done
+  echo "Importing database..."
+  mysql -u root $database < ~/desktop/$database.sql
+  echo "Deleting sql file..."
+  rm ~/desktop/$database.sql
+  echo "Done."
+}
+
+# Open a finder window in the directory given, or the current directory if none is specified
+f() {
+	if [ $# -eq 0 ]
+		then
+			open .
+		else
+			open $1
+	fi
+}
+
+# Print all the colors (useful for seeing what they look like in your particular terminal)
+show_colors() {
+  echo -e "\e[30;107m Black   \e[30;40m Black   \e[30;040m  Black   \e[97;040m Black   \e[0m"
+  echo -e "\e[90;107m Gray    \e[90;40m Gray    \e[30;100m  Gray    \e[97;100m Gray    \e[0m"
+  echo -e "\e[37;107m Gray    \e[37;40m Gray    \e[30;047m  Gray    \e[97;047m Gray    \e[0m"
+  echo -e "\e[97;107m White   \e[97;40m White   \e[30;107m  White   \e[97;107m White   \e[0m"
+  echo -e "\e[35;107m Magenta \e[35;40m Magenta \e[30;045m  Magenta \e[97;045m Magenta \e[0m"
+  echo -e "\e[95;107m Magenta \e[95;40m Magenta \e[30;105m  Magenta \e[97;105m Magenta \e[0m"
+  echo -e "\e[31;107m Red     \e[31;40m Red     \e[30;041m  Red     \e[97;041m Red     \e[0m"
+  echo -e "\e[91;107m Red     \e[91;40m Red     \e[30;101m  Red     \e[97;101m Red     \e[0m"
+  echo -e "\e[33;107m Yellow  \e[33;40m Yellow  \e[30;043m  Yellow  \e[97;043m Yellow  \e[0m"
+  echo -e "\e[93;107m Yellow  \e[93;40m Yellow  \e[30;103m  Yellow  \e[97;103m Yellow  \e[0m"
+  echo -e "\e[32;107m Green   \e[32;40m Green   \e[30;042m  Green   \e[97;042m Green   \e[0m"
+  echo -e "\e[92;107m Green   \e[92;40m Green   \e[30;102m  Green   \e[97;102m Green   \e[0m"
+  echo -e "\e[36;107m Cyan    \e[36;40m Cyan    \e[30;046m  Cyan    \e[97;046m Cyan    \e[0m"
+  echo -e "\e[96;107m Cyan    \e[96;40m Cyan    \e[30;106m  Cyan    \e[97;106m Cyan    \e[0m"
+  echo -e "\e[34;107m Blue    \e[34;40m Blue    \e[30;044m  Blue    \e[97;044m Blue    \e[0m"
+  echo -e "\e[94;107m Blue    \e[94;40m Blue    \e[30;104m  Blue    \e[97;104m Blue    \e[0m"
+
+  echo -e "\e[35;107;2m Magenta \e[35;40;2m Magenta \e[0m"
+  echo -e "\e[95;107;2m Magenta \e[95;40;2m Magenta \e[0m"
+  echo -e "\e[31;107;2m Red     \e[31;40;2m Red     \e[0m"
+  echo -e "\e[91;107;2m Red     \e[91;40;2m Red     \e[0m"
+  echo -e "\e[33;107;2m Yellow  \e[33;40;2m Yellow  \e[0m"
+  echo -e "\e[93;107;2m Yellow  \e[93;40;2m Yellow  \e[0m"
+  echo -e "\e[32;107;2m Green   \e[32;40;2m Green   \e[0m"
+  echo -e "\e[92;107;2m Green   \e[92;40;2m Green   \e[0m"
+  echo -e "\e[36;107;2m Cyan    \e[36;40;2m Cyan    \e[0m"
+  echo -e "\e[96;107;2m Cyan    \e[96;40;2m Cyan    \e[0m"
+  echo -e "\e[34;107;2m Blue    \e[34;40;2m Blue    \e[0m"
+  echo -e "\e[94;107;2m Blue    \e[94;40;2m Blue    \e[0m"
+
+  echo -e "\e[30;107;1m Black   \e[30;40;1m Black   \e[30;040;1m  Black   \e[97;040;1m Black   \e[0m"
+  echo -e "\e[90;107;1m Gray    \e[90;40;1m Gray    \e[30;100;1m  Gray    \e[97;100;1m Gray    \e[0m"
+  echo -e "\e[37;107;1m Gray    \e[37;40;1m Gray    \e[30;047;1m  Gray    \e[97;047;1m Gray    \e[0m"
+  echo -e "\e[97;107;1m White   \e[97;40;1m White   \e[30;107;1m  White   \e[97;107;1m White   \e[0m"
+  echo -e "\e[35;107;1m Magenta \e[35;40;1m Magenta \e[30;045;1m  Magenta \e[97;045;1m Magenta \e[0m"
+  echo -e "\e[95;107;1m Magenta \e[95;40;1m Magenta \e[30;105;1m  Magenta \e[97;105;1m Magenta \e[0m"
+  echo -e "\e[31;107;1m Red     \e[31;40;1m Red     \e[30;041;1m  Red     \e[97;041;1m Red     \e[0m"
+  echo -e "\e[91;107;1m Red     \e[91;40;1m Red     \e[30;101;1m  Red     \e[97;101;1m Red     \e[0m"
+  echo -e "\e[33;107;1m Yellow  \e[33;40;1m Yellow  \e[30;043;1m  Yellow  \e[97;043;1m Yellow  \e[0m"
+  echo -e "\e[93;107;1m Yellow  \e[93;40;1m Yellow  \e[30;103;1m  Yellow  \e[97;103;1m Yellow  \e[0m"
+  echo -e "\e[32;107;1m Green   \e[32;40;1m Green   \e[30;042;1m  Green   \e[97;042;1m Green   \e[0m"
+  echo -e "\e[92;107;1m Green   \e[92;40;1m Green   \e[30;102;1m  Green   \e[97;102;1m Green   \e[0m"
+  echo -e "\e[36;107;1m Cyan    \e[36;40;1m Cyan    \e[30;046;1m  Cyan    \e[97;046;1m Cyan    \e[0m"
+  echo -e "\e[96;107;1m Cyan    \e[96;40;1m Cyan    \e[30;106;1m  Cyan    \e[97;106;1m Cyan    \e[0m"
+  echo -e "\e[34;107;1m Blue    \e[34;40;1m Blue    \e[30;044;1m  Blue    \e[97;044;1m Blue    \e[0m"
+  echo -e "\e[94;107;1m Blue    \e[94;40;1m Blue    \e[30;104;1m  Blue    \e[97;104;1m Blue    \e[0m"
+
+  echo -e "\e[35;107;2;1m Magenta \e[35;40;2;1m Magenta \e[0m"
+  echo -e "\e[95;107;2;1m Magenta \e[95;40;2;1m Magenta \e[0m"
+  echo -e "\e[31;107;2;1m Red     \e[31;40;2;1m Red     \e[0m"
+  echo -e "\e[91;107;2;1m Red     \e[91;40;2;1m Red     \e[0m"
+  echo -e "\e[33;107;2;1m Yellow  \e[33;40;2;1m Yellow  \e[0m"
+  echo -e "\e[93;107;2;1m Yellow  \e[93;40;2;1m Yellow  \e[0m"
+  echo -e "\e[32;107;2;1m Green   \e[32;40;2;1m Green   \e[0m"
+  echo -e "\e[92;107;2;1m Green   \e[92;40;2;1m Green   \e[0m"
+  echo -e "\e[36;107;2;1m Cyan    \e[36;40;2;1m Cyan    \e[0m"
+  echo -e "\e[96;107;2;1m Cyan    \e[96;40;2;1m Cyan    \e[0m"
+  echo -e "\e[34;107;2;1m Blue    \e[34;40;2;1m Blue    \e[0m"
+  echo -e "\e[94;107;2;1m Blue    \e[94;40;2;1m Blue    \e[0m"
+}

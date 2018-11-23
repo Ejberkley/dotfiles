@@ -1,0 +1,41 @@
+#!/bin/zsh
+
+setopt PROMPT_SUBST # enable function calls inside the prompt
+
+PROMPT=$'%{\e[2m%}%*$(git_status) %{\e[0;34;1m%}%/ %{\e[0m%}$ '
+
+git_status() {
+  local ref="$(git symbolic-ref HEAD 2>&1)"
+  if ! [[ $ref =~ 'fatal: not a git repository' ]]; then
+    [[ $ref =~ '.*/([^/]*)' ]]
+    local branch=$match[1]
+
+    local git_status="$(git status --porcelain)"
+    if [[ $git_status = '' ]]; then # Empty status means no files have changed
+      local color='36' # Cyan
+    else
+      local color='91' # Light Red
+    fi
+
+    local merge_branch="$(git config branch.${branch}.merge)"
+    if [[ $merge_branch =~ '.*/([^/]*)' ]]; then
+      local merge_branch=$match[1]
+      local remote="$(git config branch.${merge_branch}.remote)"
+
+      local rev_list="$(git rev-list --left-right refs/remotes/${remote}/${merge_branch}...HEAD)"
+
+      local ahead="$(echo $rev_list | grep -c '>')"
+      local behind="$(echo $rev_list | grep -c '<')"
+
+      if [[ $ahead > 0 || $behind > 0 ]]; then
+        local diff="%{\e[1m%} ${behind}:${ahead}"
+      else
+        local diff=''
+      fi
+    else
+      local diff=''
+    fi
+
+    echo " %{\e[0;${color}m%}[${branch}${diff}%{\e[0;${color}m%}]"
+  fi
+}
