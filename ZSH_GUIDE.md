@@ -2,7 +2,7 @@
 ## Prompt
 In bash you change the prompt by setting the PS1 variable directly. In zsh, you can still do this, but there is also a PROMPT variable you can use that does the same thing. 
 <br><br>
-To use ANSI codes in the prompt, it has to be encloded in <code>$''</code>. Special codes should also be inside <code>%{ %}</code> blocks. Control sequences use the format <code>\e[xx;yym</code> where <code>xx</code> and <code>yy</code> are ANSI codes. For example, A Blue, bold prompt would look like this: <code>$'%{\e[34;1m%} Formatted Text '</code>
+To use ANSI codes in the prompt, the prompt has to be encloded in <code>$''</code>. Special codes should also be inside <code>%{ %}</code> blocks. Control sequences use the format <code>\e[xx;yym</code> where <code>xx</code> and <code>yy</code> are ANSI codes. For example, a Blue, bold prompt would look like this: <code>$'%{\e[34;1m%} Formatted Text '</code>
 <br><br>
 There are various variables available for use in the prompt, all starting with <code>%</code>:<br>
 <code>%%</code> - The % symbol<br>

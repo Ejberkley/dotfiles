@@ -28,7 +28,7 @@ git_status() {
       local behind="$(echo $rev_list | grep -c '<')"
 
       if [[ $ahead > 0 || $behind > 0 ]]; then
-        local diff="%{\e[1m%} ${behind}:${ahead}"
+        local diff="%{\e[1m%} ${ahead}:${behind}"
       else
         local diff=''
       fi
