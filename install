@@ -1,9 +1,6 @@
 #!/bin/bash
-# This script creates symlinks from the home directory to any dotfiles in ~/dotfiles
 
-echo "Starting"
-mkdir -p ~/dotfiles_old
-
+# Create symlinks from the home directory to any dotfiles in ~/dotfiles
 regex="[^/]*$"
 for file in ~/dotfiles/.* # Only match hidden files
 do
@@ -12,12 +9,17 @@ do
     if [[ $file =~ $regex ]]
     then
       filename="${BASH_REMATCH[0]}"
-      mv -n ~/$filename ~/dotfiles_old/$filename
       rm ~/$filename
       ln -s $file ~/$filename
     fi
   fi
 done
+
+# Symlink VS Code config files
+rm ~/Library/'Application Support'/Code/User/keybindings.json
+rm ~/Library/'Application Support'/Code/User/settings.json
+ln -s ~/dotfiles/vs_code/keybindings.json ~/Library/'Application Support'/Code/User/keybindings.json
+ln -s ~/dotfiles/vs_code/settings.json ~/Library/'Application Support'/Code/User/settings.json
 
 chsh -s /bin/zsh
 echo "Done"

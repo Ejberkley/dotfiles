@@ -1,0 +1,79 @@
+// Place your key bindings in this file to overwrite the defaults
+[
+  {
+    "key": "cmd+e",
+    "command": "-actions.findWithSelection"
+  },
+  {
+    "key": "cmd+e",
+    "command": "editor.action.deleteLines",
+    "when": "textInputFocus && !editorReadonly"
+  },
+  {
+    "key": "shift+cmd+k",
+    "command": "-editor.action.deleteLines",
+    "when": "textInputFocus && !editorReadonly"
+  },
+  {
+    "key": "cmd+k cmd+j",
+    "command": "-editor.unfoldAll",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "cmd+k cmd+9",
+    "command": "-editor.unfoldAllMarkerRegions",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "cmd+k cmd+k",
+    "command": "editor.unfoldAll"
+  },
+  {
+    "key": "alt+cmd+]",
+    "command": "-editor.unfold",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "cmd+k cmd+k",
+    "command": "-keybindings.editor.defineKeybinding",
+    "when": "inKeybindings && keybindingFocus"
+  },
+  {
+    "key": "cmd+k cmd+k",
+    "command": "-editor.action.defineKeybinding",
+    "when": "editorTextFocus && !editorReadonly && editorLangId == 'jsonc'"
+  },
+  {
+    "key": "shift+cmd+'",
+    "command": "workbench.files.action.collapseExplorerFolders"
+  },
+  {
+    "key": "cmd+'",
+    "command": "revealInExplorer"
+  },
+  {
+    "key": "cmd+;",
+    "command": "workbench.action.focusActiveEditorGroup"
+  },
+  {
+    "key": "shift+cmd+;",
+    "command": "-breadcrumbs.focus",
+    "when": "breadcrumbsPossible"
+  },
+  {
+    "key": "shift+cmd+;",
+    "command": "workbench.action.focusSideBar"
+  },
+  {
+    "key": "cmd+0",
+    "command": "-workbench.action.focusSideBar"
+  },
+  {
+    "key": "cmd+,",
+    "command": "-workbench.action.openSettings"
+  },
+  {
+    "key": "cmd+,",
+    "command": "workbench.action.openSettingsJson"
+  }
+]

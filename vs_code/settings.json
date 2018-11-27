@@ -1,0 +1,64 @@
+{
+  // General Config settings
+  "editor.fontSize": 10.5,
+  "editor.minimap.enabled": false,
+  "editor.quickSuggestions": {
+    "other": false,
+    "comments": false,
+    "strings": false
+  },
+  "editor.renderWhitespace": "all",
+  "editor.rulers": [80,120],
+  "editor.wordWrap": "on",
+  "editor.wrappingIndent": "indent",
+  "explorer.confirmDragAndDrop": false,
+  "explorer.confirmDelete": false,
+  "search.location": "panel",
+  "window.restoreWindows": "all",
+  "window.zoomLevel": 0,
+  "workbench.colorCustomizations": {
+    "editorRuler.foreground": "#2c2c2c"
+  },
+  "workbench.editor.enablePreview": false,
+  "workbench.startupEditor": "none",
+
+  // Allow comments in json files
+  "files.associations": {
+    "*.json": "jsonc"
+  },
+
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/.jpg": true,
+    "**/.jpeg": true,
+    "**/.png": true,
+    "**/.gif": true,
+    "**/.ttf": true,
+    "**/.tga": true,
+    "**/.dds": true,
+    "**/.ico": true,
+    "**/.eot": true,
+    "**/.pdf": true,
+    "**/.swf": true,
+    "**/.jar": true,
+    "**/.zip": true,
+    "**/.dat": true,
+    "tmp/*": true,
+    "log/*": true,
+    "doc/*": true,
+    ".yardoc/*": true,
+    "db/schemba.rb": true
+  },
+
+  /* Plugins */
+  "eslint.run": "onSave",
+  
+  // Prevent default linters from interfering with stylelint
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false
+}
