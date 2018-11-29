@@ -9,6 +9,7 @@
   },
   "editor.renderWhitespace": "all",
   "editor.rulers": [80,120],
+  "editor.tabSize": 2,
   "editor.wordWrap": "on",
   "editor.wrappingIndent": "indent",
   "explorer.confirmDragAndDrop": false,

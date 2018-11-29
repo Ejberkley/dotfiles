@@ -1,9 +1,15 @@
 #!/bin/zsh
 
-# Zsh comnfig options
+# Zsh config options
 zle_highlight+=(paste:none)
-bindkey "^[[A" history-beginning-search-backward
-bindkey "^[[B" history-beginning-search-forward
+
+# Make up/down command history work right
+autoload up-line-or-beginning-search
+autoload down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey "^[[A" up-line-or-beginning-search
+bindkey "^[[B" down-line-or-beginning-search
 
 # Load the rest of the files
 source ~/.zsh_prompt

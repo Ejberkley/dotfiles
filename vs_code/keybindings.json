@@ -61,14 +61,6 @@
     "when": "breadcrumbsPossible"
   },
   {
-    "key": "shift+cmd+;",
-    "command": "workbench.action.focusSideBar"
-  },
-  {
-    "key": "cmd+0",
-    "command": "-workbench.action.focusSideBar"
-  },
-  {
     "key": "cmd+,",
     "command": "-workbench.action.openSettings"
   },
