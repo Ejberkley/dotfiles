@@ -4,6 +4,7 @@ setopt PROMPT_SUBST # enable function calls inside the prompt
 
 PROMPT=$'%{\e[2m%}%*$(git_status) %{\e[0;34;1m%}$(current_directory) %{\e[0m%}$ '
 
+# Replace /Users/brennen/ with ~/
 current_directory() {
   local current_directory=$PWD
   local user=$USER
