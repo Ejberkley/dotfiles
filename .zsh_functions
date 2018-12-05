@@ -1,5 +1,10 @@
 #!/bin/zsh
 
+cb() {
+  git checkout -b $1 
+  git branch -u origin/$1
+}
+
 # Copy database rows from the live degreepage database to the local degreepage database
 #
 # @param [$1] The table to copy rows from

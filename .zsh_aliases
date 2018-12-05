@@ -30,10 +30,10 @@ alias st="cd ~/work/search-terms"
 # Shortcuts
 alias c="git checkout"
 alias cm="git checkout master"
-alias cb="git checkout -b"
 alias co="git commit"
 alias ga="git add"
-
+alias dlog="tail -f log/development.log"
+alias tlog="tail -f log/test.log"
 
 alias d="git diff"
 alias s="git status"

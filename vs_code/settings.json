@@ -8,10 +8,14 @@
     "strings": false
   },
   "editor.renderWhitespace": "all",
-  "editor.rulers": [80,120],
+  "editor.renderControlCharacters": true,
+  "editor.renderIndentGuides": true,
+  
+  "editor.rulers": [100,120],
   "editor.tabSize": 2,
   "editor.wordWrap": "on",
   "editor.wrappingIndent": "indent",
+  "explorer.autoReveal": false,
   "explorer.confirmDragAndDrop": false,
   "explorer.confirmDelete": false,
   "search.location": "panel",
