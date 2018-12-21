@@ -6,10 +6,10 @@ PROMPT=$'%{\e[2m%}%*$(git_status) %{\e[0;34;1m%}$(current_directory) %{\e[0m%}$ 
 
 # Replace /Users/brennen/ with ~/
 current_directory() {
-  local current_directory=$PWD
+  local current_directory=$PWD:l
   local user=$USER
   # if [[ $current_directory =~ "\/Users\/brennen\/dotfiles" ]]; then
-  if [[ $current_directory =~ "\/Users\/$user(.*)" ]]; then
+  if [[ $current_directory =~ "\/users\/$user(.*)" ]]; then
     local current_directory="~${match[1]}"
   fi
   echo $current_directory
@@ -44,9 +44,25 @@ git_status() {
         local diff=''
       fi
     else
-      local diff=''
+      local diff="%{\e[1m%} --"
     fi
 
     echo " %{\e[0;${color}m%}[${branch}${diff}%{\e[0;${color}m%}]"
   fi
+}
+
+precmd() {
+  update_tab_title
+}
+preexec() {
+  update_tab_title_working
+}
+
+# This is kind of hackish, but I want this to run every time the command prompt is displayed
+update_tab_title() {
+  echo -en "\e]1;$(current_directory)\a"
+}
+
+update_tab_title_working() {
+  echo -en "\e]1;$(current_directory)\u00a0\u00a0🔴\a"
 }

@@ -17,3 +17,6 @@ source ~/.zsh_environment
 source ~/.zsh_secrets
 source ~/.zsh_aliases
 source ~/.zsh_functions
+
+# Set the tab title
+DISABLE_AUTO_TITLE="true"

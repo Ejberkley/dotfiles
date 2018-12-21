@@ -1,6 +1,26 @@
 // Place your key bindings in this file to overwrite the defaults
 [
   {
+    "key": "ctrl+alt+up",
+    "command": "cursorMove",
+    "args": {
+        "to": "up",
+        "by": "line",
+        "value": 10
+    },
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+alt+down",
+    "command": "cursorMove",
+    "args": {
+        "to": "down",
+        "by": "line",
+        "value": 10
+    },
+    "when": "editorTextFocus"
+  },
+  {
     "key": "cmd+e",
     "command": "-actions.findWithSelection"
   },

@@ -1,6 +1,6 @@
 {
   // General Config settings
-  "editor.fontSize": 10.5,
+  "editor.fontSize": 11.5,
   "editor.minimap.enabled": false,
   "editor.quickSuggestions": {
     "other": false,
@@ -15,7 +15,7 @@
   "editor.tabSize": 2,
   "editor.wordWrap": "on",
   "editor.wrappingIndent": "indent",
-  "explorer.autoReveal": false,
+  "explorer.autoReveal": true,
   "explorer.confirmDragAndDrop": false,
   "explorer.confirmDelete": false,
   "search.location": "panel",
