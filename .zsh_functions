@@ -5,8 +5,11 @@ push() {
   if [[ $ref =~ 'fatal: not a git repository' ]]; then
     echo "Not a git repository"
   else
-    [[ $ref =~ '.*/([^/]*)' ]]
-    local branch=$match[1]
+    if [[ $ref =~ '.*/([^/]*)' ]]; then
+      local branch=$match[1]
+    else
+      echo "No branch found"
+    fi
     local merge_branch="$(git config branch.${branch}.merge)"
 
     if [[ $merge_branch =~ '.*/([^/]*)' ]]; then
@@ -22,8 +25,11 @@ pr() {
   if [[ $ref =~ 'fatal: not a git repository' ]]; then
     echo "Not a git repository"
   else
-    [[ $ref =~ '.*/([^/]*)' ]]
-    local branch=$match[1]
+    if [[ $ref =~ '.*/([^/]*)' ]]; then
+      local branch=$match[1]
+    else
+      echo "No branch found"
+    fi
 
     local origin="$(git remote show origin 2>&1)"
     local regex1="Push  URL: git@github.com:([^

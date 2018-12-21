@@ -18,8 +18,15 @@ current_directory() {
 git_status() {
   local ref="$(git symbolic-ref HEAD 2>&1)"
   if ! [[ $ref =~ 'fatal: not a git repository' ]]; then
-    [[ $ref =~ '.*/([^/]*)' ]]
-    local branch=$match[1]
+    if [[ $ref =~ '.*/([^/]*)' ]]; then
+      local branch=$match[1]
+    elif [[ $ref =~ 'fatal: ref HEAD is not a symbolic ref' ]]; then
+      echo " %{\e[0;91m%}[?]"
+      return
+    else
+      echo " %{\e[0;91m%}[git error]"
+      return
+    fi
 
     local git_status="$(git status --porcelain)"
     if [[ $git_status = '' ]]; then # Empty status means no files have changed
