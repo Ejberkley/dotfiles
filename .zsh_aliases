@@ -29,6 +29,7 @@ alias st="cd ~/work/search-terms"
 
 # Shortcuts
 alias c="git checkout"
+alias cb="git checkout -b"
 alias cm="git checkout master"
 alias co="git commit"
 alias ga="git add"

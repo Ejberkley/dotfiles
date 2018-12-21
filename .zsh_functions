@@ -1,11 +1,42 @@
 #!/bin/zsh
 
-cb() {
-  if [ $# -eq 0 ]; then
-    echo "no branch name given"
+push() {
+  local ref="$(git symbolic-ref HEAD 2>&1)"
+  if [[ $ref =~ 'fatal: not a git repository' ]]; then
+    echo "Not a git repository"
   else
-    git checkout -b $1 
-    git branch -u origin/$1
+    [[ $ref =~ '.*/([^/]*)' ]]
+    local branch=$match[1]
+    local merge_branch="$(git config branch.${branch}.merge)"
+
+    if [[ $merge_branch =~ '.*/([^/]*)' ]]; then
+      git push
+    else
+      git push --set-upstream origin $branch
+    fi
+  fi
+}
+
+pr() {
+  local ref="$(git symbolic-ref HEAD 2>&1)"
+  if [[ $ref =~ 'fatal: not a git repository' ]]; then
+    echo "Not a git repository"
+  else
+    [[ $ref =~ '.*/([^/]*)' ]]
+    local branch=$match[1]
+
+    local origin="$(git remote show origin 2>&1)"
+    local regex1="Push  URL: git@github.com:([^
+]*)" # zsh regex doesn't support line break characters, so I have to insert one literally
+    local regex2="Push  URL: https://github.com/([^
+]*)\.git" # zsh regex doesn't support line break characters, so I have to insert one literally
+
+    if [[ $origin =~ $regex1 || $origin =~ $regex2 ]]; then
+      local remote=$match[1]
+      open https://github.com/$remote/pull/new/$branch
+    else
+      echo "No remote branch set up"
+    fi
   fi
 }
 
