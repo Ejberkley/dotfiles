@@ -20,6 +20,38 @@ push() {
   fi
 }
 
+update() {
+  for d in /users/brennen/work/*/; do
+    echo $d
+    cd $d
+    local head="$(git remote show origin | grep "HEAD branch" | sed 's/.*: //')"
+    git checkout $head
+    git reset --hard
+    git pull
+    del rubocop-1-16
+    cb rubocop-1-16
+    cp /users/brennen/desktop/rubocop .rubocop.yml
+    git commit -am "Update rubocop config"
+    push
+    pr
+  done
+}
+
+link_tests() {
+  rm spec/controllers
+  rm spec/factories
+  rm spec/request
+  rm spec/routing
+  rm spec/support
+  rm spec/models
+  ln -s `bundle show chimera-edu`/spec/* spec/
+}
+
+t() {
+  link_tests
+  rspec
+}
+
 pr() {
   local ref="$(git symbolic-ref HEAD 2>&1)"
   if [[ $ref =~ 'fatal: not a git repository' ]]; then
