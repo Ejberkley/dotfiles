@@ -28,7 +28,8 @@ alias ra="cd ~/work/reach-admin"
 # Shortcuts
 alias c="git checkout"
 alias cb="git checkout -b"
-alias cm="git checkout master"
+alias cm="git checkout master; git pull"
+alias cc="git checkout chimera; git pull"
 alias co="git commit"
 alias del="git branch -D"
 alias ga="git add"
@@ -38,7 +39,7 @@ alias tlog="tail -f log/test.log"
 alias st="open -a SourceTree ."
 alias orig="rm ./**/*.orig"
 alias pos="cd ~/icloud/pos"
-alias u="bundle;yarn;spow;"
+alias u="rp;redis-cli FLUSHALL"
 
 alias d="git diff"
 alias s="git status"
@@ -47,7 +48,7 @@ alias b="bundle"
 alias be="bundle exec"
 alias deploy='bundle exec cap production deploy'
 alias stage='bundle exec cap staging deploy'
-alias spow='touch ~/.pow/restart.txt'
+alias rp='puma-dev -stop'
 
 alias rc="redis-commander"
 alias rc_tunnel="ssh -N -L 7979:$REDIS_HOST:7979 charon-edu"

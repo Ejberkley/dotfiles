@@ -1,8 +1,11 @@
 #!/bin/bash
 
-# Create symlinks from the home directory to any dotfiles in ~/dotfiles
+# Use Z shell
+chsh -s /bin/zsh
+
+# Create symlinks from the home directory to any files in ~/dotfiles/dotfiles
 regex="[^/]*$"
-for file in ~/dotfiles/.* # Only match hidden files
+for file in ~/dotfiles/dotfiles/.* # Only match hidden files
 do
   if [[ -f $file ]]
   then
@@ -15,11 +18,27 @@ do
   fi
 done
 
+# Symlink the scripts folder
+rm -rf ~/scripts
+ln -s ~/dotfiles/scripts ~/scripts
+
 # Symlink VS Code config files
 rm ~/Library/'Application Support'/Code/User/keybindings.json
 rm ~/Library/'Application Support'/Code/User/settings.json
 ln -s ~/dotfiles/vs_code/keybindings.json ~/Library/'Application Support'/Code/User/keybindings.json
 ln -s ~/dotfiles/vs_code/settings.json ~/Library/'Application Support'/Code/User/settings.json
 
-chsh -s /bin/zsh
-echo "Done"
+# Symlink LaunchAgents
+regex="[^/]*$"
+for file in ~/dotfiles/launch_agents/*
+do
+  if [[ -f $file ]]
+  then
+    if [[ $file =~ $regex ]]
+    then
+      filename="${BASH_REMATCH[0]}"
+      rm ~/Library/LaunchAgents/$filename
+      ln -s $file ~/Library/LaunchAgents/$filename
+    fi
+  fi
+done

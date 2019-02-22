@@ -12,12 +12,14 @@
   "editor.renderIndentGuides": true,
   
   "editor.rulers": [100,120],
+  "editor.detectIndentation": false,
   "editor.tabSize": 2,
   "editor.wordWrap": "on",
   "editor.wrappingIndent": "indent",
   "explorer.autoReveal": false,
   "explorer.confirmDragAndDrop": false,
   "explorer.confirmDelete": false,
+  "ruby.intellisense": "rubyLocate",
   "search.location": "panel",
   "window.restoreWindows": "all",
   "window.zoomLevel": 0,
@@ -56,6 +58,7 @@
     "log/*": true,
     "doc/*": true,
     ".yardoc/*": true,
+    "**/widget_docs/*": true,
     "db/schemba.rb": true
   },
 
@@ -65,5 +68,6 @@
   // Prevent default linters from interfering with stylelint
   "css.validate": false,
   "less.validate": false,
-  "scss.validate": false
+  "scss.validate": false,
+  "breadcrumbs.enabled": true
 }
