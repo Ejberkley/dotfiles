@@ -25,8 +25,8 @@ ln -s ~/dotfiles/scripts ~/scripts
 # Symlink VS Code config files
 rm ~/Library/'Application Support'/Code/User/keybindings.json
 rm ~/Library/'Application Support'/Code/User/settings.json
-ln -s ~/dotfiles/vs_code/keybindings.json ~/Library/'Application Support'/Code/User/keybindings.json
-ln -s ~/dotfiles/vs_code/settings.json ~/Library/'Application Support'/Code/User/settings.json
+ln -s ~/dotfiles/settings/vs_code/keybindings.json ~/Library/'Application Support'/Code/User/keybindings.json
+ln -s ~/dotfiles/settings/vs_code/settings.json ~/Library/'Application Support'/Code/User/settings.json
 
 # Symlink LaunchAgents
 regex="[^/]*$"
