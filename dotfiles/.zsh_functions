@@ -61,23 +61,27 @@ update() {
   done
 }
 
-getci() {
-  echo -e '\e[95;107;1mOpening SSH tunnel\e[0m'
-  ssh -N -L 10026:$DEGREEPAGE_HOST:3306 acheron2-edu &
-  local pid=$!
-  sleep 1
+get() {
+  if [ $# -eq 0 ]; then
+		"No table name given"
+	else
+    echo -e '\e[95;107;1mOpening SSH tunnel\e[0m'
+    ssh -N -L 10026:$DEGREEPAGE_HOST:3306 acheron2-edu &
+    local pid=$!
+    sleep 1
 
-  echo -e '\e[95;107;1mDownloading data\e[0m'
-  mysqldump --host=127.0.0.1 --port=10026 -u$DEGREEPAGE_USER -p$DEGREEPAGE_PASSWORD degreepage content_items > ~/desktop/content_items.sql
+    echo -e '\e[95;107;1mDownloading data\e[0m'
+    mysqldump --host=127.0.0.1 --port=10026 -u$DEGREEPAGE_USER -p$DEGREEPAGE_PASSWORD degreepage $1 > ~/desktop/$1.sql
 
-  echo -e '\e[95;107;1mImporting data\e[0m'
-  mysql -u root degreepage < ~/desktop/content_items.sql
+    echo -e '\e[95;107;1mImporting data\e[0m'
+    mysql -u root degreepage < ~/desktop/$1.sql
 
-  echo -e '\e[95;107;1mClosing SSH Tunnel\e[0m'
-  kill $pid
+    echo -e '\e[95;107;1mClosing SSH Tunnel\e[0m'
+    kill $pid
 
-  echo -e '\e[95;107;1mDeleting file\e[0m'
-  rm ~/desktop/content_items.sql
+    echo -e '\e[95;107;1mDeleting file\e[0m'
+    rm ~/desktop/$1.sql
+	fi
 }
 
 link_tests() {

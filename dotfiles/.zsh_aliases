@@ -10,22 +10,25 @@ alias dot="cd ~/dotfiles"
 
 alias w="cd ~/work"
 
+# Project aliases
 alias cnd="cd ~/work/cnd"
 alias ec2="cd ~/work/ec2worker"
 alias ce="cd ~/work/chimera-edu"
+alias ch="cd ~/work/chimera"
+alias cw="cd ~/work/chimera-widget"
+alias es="cd ~/work/edu-styles"
 alias g="cd ~/work/guide"
 alias gp="cd ~/work/gradprograms"
 alias gr="cd ~/work/gradreports"
 alias gtos="cd ~/work/gtos"
-alias guide="cd ~/work/guide"
 alias h2b="cd ~/work/howtobecome"
-alias hg="cd ~/work/hydragem"
 alias lh="cd ~/work/lighthouse"
 alias or="cd ~/work/outreach"
 alias ou="cd ~/work/onlineu"
 alias ra="cd ~/work/reach-admin"
 alias nc="cd ~/work/nursingcareer"
 alias swd="cd ~/work/socialworkdegree"
+alias su="cd ~/work/switchup"
 
 # Shortcuts
 alias c="git checkout"
