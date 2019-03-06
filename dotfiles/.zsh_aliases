@@ -24,6 +24,8 @@ alias lh="cd ~/work/lighthouse"
 alias or="cd ~/work/outreach"
 alias ou="cd ~/work/onlineu"
 alias ra="cd ~/work/reach-admin"
+alias nc="cd ~/work/nursingcareer"
+alias swd="cd ~/work/socialworkdegree"
 
 # Shortcuts
 alias c="git checkout"
@@ -40,6 +42,8 @@ alias st="open -a SourceTree ."
 alias orig="rm ./**/*.orig"
 alias pos="cd ~/icloud/pos"
 alias u="rp;redis-cli FLUSHALL"
+
+alias upce="cb upgrade;yarn upgrade chimera-edu;bundle;git commit -am 'Upgrade CE';push;pr"
 
 alias d="git diff"
 alias s="git status"
