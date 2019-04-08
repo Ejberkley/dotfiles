@@ -34,7 +34,7 @@ alias su="cd ~/work/switchup"
 alias c="git checkout"
 alias cb="git checkout -b"
 alias cm="git checkout master; git pull"
-alias cc="git checkout chimera; git pull"
+alias cc="git checkout beta; git pull"
 alias co="git commit"
 alias del="git branch -D"
 alias ga="git add"
@@ -45,16 +45,17 @@ alias st="open -a SourceTree ."
 alias orig="rm ./**/*.orig"
 alias pos="cd ~/icloud/pos"
 alias u="rp;redis-cli FLUSHALL"
-
-alias upce="cb upgrade;yarn upgrade chimera-edu;bundle;git commit -am 'Upgrade CE';push;pr"
+alias undo="git reset HEAD~1"
+alias amend="git commit -a --amend"
 
 alias d="git diff"
 alias s="git status"
 
-alias b="bundle"
+alias b="git branch"
 alias be="bundle exec"
 alias deploy='bundle exec cap production deploy'
 alias stage='bundle exec cap staging deploy'
+alias beta='bundle exec cap beta deploy'
 alias rp='puma-dev -stop'
 
 alias rc="redis-commander"

@@ -11,7 +11,7 @@
   "editor.renderControlCharacters": true,
   "editor.renderIndentGuides": true,
   
-  "editor.rulers": [100,120],
+  "editor.rulers": [80,120],
   "editor.detectIndentation": false,
   "editor.tabSize": 2,
   "editor.wordWrap": "on",
@@ -59,8 +59,24 @@
     "doc/*": true,
     ".yardoc/*": true,
     "**/widget_docs/*": true,
-    "db/schemba.rb": true
+    "**/db/migrate/2011*": true,
+    "**/db/migrate/2012*": true,
+    "**/db/migrate/2013*": true,
+    "**/db/migrate/2014*": true,
+    "**/db/migrate/2015*": true,
+    "**/db/migrate/2016*": true,
+    "**/db/migrate/2017*": true,
+    "**/db/migrate/2018*": true,
+    "**/db/archived_migrations": true,
   },
+
+  "search.exclude": {
+    "**/db/schema.rb": true,
+    "**/db/migrate": true,
+    "**/db/archived_migrations": true,
+  },
+
+  
 
   /* Plugins */
   "eslint.run": "onSave",
