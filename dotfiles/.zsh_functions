@@ -109,6 +109,7 @@ upce() {
   fi
 }
 
+#LOcal Chimera-Edu
 loce() {
   # Uncomment the local chimera-edu line
   sed -i '' "s/#[[:space:]]*\(gem[[:space:]]*['\"]chimera-edu.*path:\)/\1/" Gemfile
@@ -118,6 +119,7 @@ loce() {
   bundle
 }
 
+#LIve Chimera-Edu
 lice() {
   # Uncomment the live chimera-edu line
   sed -i '' "s/#[[:space:]]*\(gem[[:space:]]*['\"]chimera-edu.*git:\)/\1/" Gemfile
