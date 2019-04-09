@@ -104,6 +104,36 @@ upce() {
     else
       echo "Error opening PR in browser"
     fi
+  else
+    echo "No version found for chimera-edu"
+  fi
+}
+
+loce() {
+  # Uncomment the local chimera-edu line
+  sed -i '' "s/#[[:space:]]*\(gem[[:space:]]*['\"]chimera-edu.*path:\)/\1/" Gemfile
+
+  # Comment out the live chimera-edu line
+  sed -i '' "s/^\([[:space:]]*gem[[:space:]]*['\"]chimera-edu.*git:\)/# \1/" Gemfile
+  bundle
+}
+
+lice() {
+  # Uncomment the live chimera-edu line
+  sed -i '' "s/#[[:space:]]*\(gem[[:space:]]*['\"]chimera-edu.*git:\)/\1/" Gemfile
+
+  # Comment out the local chimera-edu line
+  sed -i '' "s/^\([[:space:]]*gem[[:space:]]*['\"]chimera-edu.*path:\)/# \1/" Gemfile
+
+  # Update chimera-edu to the newest version
+  local version_file="$(git -C ~/work/chimera-edu show origin/master:lib/chimera/edu/version.rb)"
+  if [[ $version_file =~ "VERSION[[:space:]]*=[[:space:]]*['\"](.+)['\"]" ]]; then
+    local version=$match[1]
+    echo "Updating chimera-edu to version $version"
+    sed -i '' "s/\(gem[[:space:]]*['\"]chimera-edu['\"],[[:space:]]*['\"]\).*\(['\"],[[:space:]]*git\)/\1= "$version"\2/" Gemfile
+    bundle
+  else
+    echo "No version found for chimera-edu"
   fi
 }
 
