@@ -84,28 +84,22 @@ get() {
 	fi
 }
 
+# UPgrade Chimera-Edu
 upce() {
-  local version_file="$(git -C ~/work/chimera-edu show origin/master:lib/chimera/edu/version.rb)"
-  if [[ $version_file =~ "VERSION[[:space:]]*=[[:space:]]*['\"](.+)['\"]" ]]; then
-    local version=$match[1]
-    echo "Updating chimera-edu to version $version"
-    sed -i '' "s/\(gem[[:space:]]*['\"]chimera-edu['\"],[[:space:]]*['\"]\).*\(['\"],[[:space:]]*git\)/\1= "$version"\2/" Gemfile
-    cb upgrade
-    yarn upgrade chimera-edu
-    bundle
-    git commit -am 'Upgrade CE'
-    push
-    hub pull-request --no-edit
-    local version="$(hub pr list)"
-    set_git_repo_url
-    if [[ $version =~ "#([0-9]*)" ]]; then
-      echo "${git_repo_url}/pull/${match[1]}"
-      open $git_repo_url/pull/$match[1]
-    else
-      echo "Error opening PR in browser"
-    fi
+  lice()
+
+  cb upgrade
+  yarn upgrade chimera-edu
+  git commit -am 'Upgrade CE'
+  push
+  hub pull-request --no-edit
+  local version="$(hub pr list)"
+  set_git_repo_url
+  if [[ $version =~ "#([0-9]*)" ]]; then
+    echo "${git_repo_url}/pull/${match[1]}"
+    open $git_repo_url/pull/$match[1]
   else
-    echo "No version found for chimera-edu"
+    echo "Error opening PR in browser"
   fi
 }
 
