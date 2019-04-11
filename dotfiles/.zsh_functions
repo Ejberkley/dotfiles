@@ -86,9 +86,13 @@ get() {
 
 # UPgrade Chimera-Edu
 upce() {
-  lice()
-
+  git stash save "upce"
+  cm
+  del upgrade
   cb upgrade
+
+  lice
+
   yarn upgrade chimera-edu
   git commit -am 'Upgrade CE'
   push
@@ -110,7 +114,8 @@ loce() {
 
   # Comment out the live chimera-edu line
   sed -i '' "s/^\([[:space:]]*gem[[:space:]]*['\"]chimera-edu.*git:\)/# \1/" Gemfile
-  bundle
+  bundle update --group=internal --conservative
+  u
 }
 
 #LIve Chimera-Edu
@@ -122,20 +127,30 @@ lice() {
   sed -i '' "s/^\([[:space:]]*gem[[:space:]]*['\"]chimera-edu.*path:\)/# \1/" Gemfile
 
   # Update chimera-edu to the newest version
+  git -C ~/work/chimera-edu fetch
   local version_file="$(git -C ~/work/chimera-edu show origin/master:lib/chimera/edu/version.rb)"
   if [[ $version_file =~ "VERSION[[:space:]]*=[[:space:]]*['\"](.+)['\"]" ]]; then
     local version=$match[1]
     echo "Updating chimera-edu to version $version"
     sed -i '' "s/\(gem[[:space:]]*['\"]chimera-edu['\"],[[:space:]]*['\"]\).*\(['\"],[[:space:]]*git\)/\1= "$version"\2/" Gemfile
-    bundle
+    bundle update --group=internal --conservative
+    u
   else
     echo "No version found for chimera-edu"
   fi
 }
 
 set_git_repo_url() {
-  local path="$(git remote show origin | grep "Push\s*URL:" | sed 's/.*:.*://')"
-  git_repo_url="https://github.com/$path"
+  local path="$(git remote show origin | grep 'Push\s*URL:')"
+  if [[ $path =~ 'https://github.com/(.*)\.git' ]]; then
+    git_repo_url="https://github.com/${match[1]}"
+  else
+    if [[ $path =~ 'git@github.com:(.*)' ]]; then
+      git_repo_url="https://github.com/${match[1]}"
+    else
+      echo "Invalid path"
+    fi
+  fi
 }
 
 link_tests() {
