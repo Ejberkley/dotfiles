@@ -7,10 +7,14 @@ alias load="source ~/.zshrc"
 # Navigation
 alias desk="cd ~/desktop"
 alias dot="cd ~/dotfiles"
+alias back="c HEAD~1"
+
+alias stocks="cd ~/icloud/'Software Projects'/stocks"
 
 alias w="cd ~/work"
 
 # Project aliases
+alias hg="cd ~/work/hydragem"
 alias cnd="cd ~/work/cnd"
 alias ec2="cd ~/work/ec2worker"
 alias ce="cd ~/work/chimera-edu"
@@ -25,10 +29,13 @@ alias h2b="cd ~/work/howtobecome"
 alias lh="cd ~/work/lighthouse"
 alias or="cd ~/work/outreach"
 alias ou="cd ~/work/onlineu"
-alias ra="cd ~/work/reach-admin"
+alias ojs="cd ~/work/optimal-js"
+alias rad="cd ~/work/reach-admin"
+alias ran="cd ~/work/reach_analytics"
 alias nc="cd ~/work/nursingcareer"
 alias swd="cd ~/work/socialworkdegree"
 alias su="cd ~/work/switchup"
+alias td="cd ~/work/talentdesk"
 
 # Shortcuts
 alias c="git checkout"
@@ -47,6 +54,7 @@ alias pos="cd ~/icloud/pos"
 alias u="rp;redis-cli FLUSHALL"
 alias undo="git reset HEAD~1"
 alias amend="git commit -a --amend"
+alias postly="bundle exec rackup -p 2000"
 
 alias d="git diff"
 alias s="git status"

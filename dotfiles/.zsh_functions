@@ -20,6 +20,10 @@ push() {
   fi
 }
 
+port() {
+  lsof -i tcp:$1
+}
+
 delete_branches() {
   git fetch --prune
   local branches="$(git for-each-ref --shell --format='%(refname) %(push:short)')"
@@ -94,7 +98,7 @@ upce() {
   lice
 
   yarn upgrade chimera-edu
-  git commit -am 'Upgrade CE'
+  git commit -am 'Upgrade chimera-edu'
   push
   hub pull-request --no-edit
   local version="$(hub pr list)"
@@ -134,6 +138,7 @@ lice() {
     echo "Updating chimera-edu to version $version"
     sed -i '' "s/\(gem[[:space:]]*['\"]chimera-edu['\"],[[:space:]]*['\"]\).*\(['\"],[[:space:]]*git\)/\1= "$version"\2/" Gemfile
     bundle update --group=internal --conservative
+    bundle update chimera-edu --conservative
     u
   else
     echo "No version found for chimera-edu"
@@ -181,7 +186,7 @@ pr() {
 
     local origin="$(git remote show origin 2>&1)"
     local regex1="Push  URL: git@github.com:([^
-]*)" # zsh regex doesn't support line break characters, so I have to insert one literally
+]*).git" # zsh regex doesn't support line break characters, so I have to insert one literally
     local regex2="Push  URL: https://github.com/([^
 ]*)\.git" # zsh regex doesn't support line break characters, so I have to insert one literally
 

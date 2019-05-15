@@ -67,7 +67,17 @@
     "**/db/migrate/2016*": true,
     "**/db/migrate/2017*": true,
     "**/db/migrate/2018*": true,
+    "**/db/migrate/201901*": true,
+    "**/db/migrate/201902*": true,
+    "**/db/migrate/201903*": true,
+    "**/db/migrate_govt_db/2013*": true,
+    "**/db/migrate_govt_db/2014*": true,
+    "**/db/migrate_govt_db/2015*": true,
+    "**/db/migrate_govt_db/2016*": true,
+    "**/db/migrate_govt_db/2017*": true,
+    "**/db/migrate_govt_db/2018*": true,
     "**/db/archived_migrations": true,
+    "**/public/packs/*": true
   },
 
   "search.exclude": {
@@ -76,11 +86,9 @@
     "**/db/archived_migrations": true,
   },
 
-  
-
   /* Plugins */
   "eslint.run": "onSave",
-  
+
   // Prevent default linters from interfering with stylelint
   "css.validate": false,
   "less.validate": false,
