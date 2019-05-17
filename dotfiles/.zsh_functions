@@ -186,9 +186,9 @@ pr() {
 
     local origin="$(git remote show origin 2>&1)"
     local regex1="Push  URL: git@github.com:([^
-]*).git" # zsh regex doesn't support line break characters, so I have to insert one literally
+]*)(\.git)?" # zsh regex doesn't support line break characters, so I have to insert one literally
     local regex2="Push  URL: https://github.com/([^
-]*)\.git" # zsh regex doesn't support line break characters, so I have to insert one literally
+]*)(\.git)?" # zsh regex doesn't support line break characters, so I have to insert one literally
 
     if [[ $origin =~ $regex1 || $origin =~ $regex2 ]]; then
       local remote=$match[1]
