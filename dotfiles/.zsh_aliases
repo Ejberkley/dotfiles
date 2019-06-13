@@ -12,6 +12,7 @@ alias back="c HEAD~1"
 alias stocks="cd ~/icloud/'Software Projects'/stocks"
 
 alias w="cd ~/work"
+alias fly="cd ~/fly"
 
 # Project aliases
 alias hg="cd ~/work/hydragem"

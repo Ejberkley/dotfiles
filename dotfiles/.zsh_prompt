@@ -15,6 +15,17 @@ current_directory() {
   echo $current_directory
 }
 
+set_git_branch() {
+  local ref="$(git symbolic-ref HEAD 2>&1)"
+  if ! [[ $ref =~ 'fatal: not a git repository' ]]; then
+    if [[ $ref =~ '.*/([^/]*)' ]]; then
+      git_branch=$match[1]
+    fi
+  else
+    git_branch=''
+  fi
+}
+
 git_status() {
   local ref="$(git symbolic-ref HEAD 2>&1)"
   if ! [[ $ref =~ 'fatal: not a git repository' ]]; then

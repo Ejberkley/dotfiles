@@ -153,7 +153,7 @@ set_git_repo_url() {
     if [[ $path =~ 'git@github.com:(.*)' ]]; then
       git_repo_url="https://github.com/${match[1]}"
     else
-      echo "Invalid path"
+      git_repo_url=''
     fi
   fi
 }
@@ -168,9 +168,30 @@ link_tests() {
   ln -s `bundle show chimera-edu`/spec/support spec/
 }
 
+link_tests_td() {
+  rm -rf spec/factories
+  rm -rf spec/chimera
+  rm -rf spec/support
+
+  ln -s `bundle show td-chimera-widgets`/spec/factories spec/
+  ln -s `bundle show td-chimera-widgets`/spec/chimera spec/
+  ln -s `bundle show td-chimera-widgets`/spec/support spec/
+}
+
 t() {
   link_tests
   rspec
+}
+
+ship() {
+  set_git_repo_url
+  set_git_branch
+  if [[ "$git_repo_url/$git_branch" =~ 'https://github.com/(.*)' ]]; then
+    local stack=$match[1]
+    open "https://admin.optimal.com/shipit/$stack"
+  else
+    echo "Not a git repository"
+  fi
 }
 
 pr() {
@@ -186,11 +207,15 @@ pr() {
 
     local origin="$(git remote show origin 2>&1)"
     local regex1="Push  URL: git@github.com:([^
-]*)(\.git)?" # zsh regex doesn't support line break characters, so I have to insert one literally
+]*)\.git" # zsh regex doesn't support line break characters, so I have to insert one literally
     local regex2="Push  URL: https://github.com/([^
-]*)(\.git)?" # zsh regex doesn't support line break characters, so I have to insert one literally
+]*)\.git" # zsh regex doesn't support line break characters, so I have to insert one literally
+    local regex3="Push  URL: git@github.com:([^
+]*)" # zsh regex doesn't support line break characters, so I have to insert one literally
+    local regex4="Push  URL: https://github.com/([^
+]*)" # zsh regex doesn't support line break characters, so I have to insert one literally
 
-    if [[ $origin =~ $regex1 || $origin =~ $regex2 ]]; then
+    if [[ $origin =~ $regex1 || $origin =~ $regex2 || $origin =~ $regex3 || $origin =~ $regex4 ]]; then
       local remote=$match[1]
       open https://github.com/$remote/pull/new/$branch
     else
