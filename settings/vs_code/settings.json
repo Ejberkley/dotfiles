@@ -57,6 +57,7 @@
     "tmp/*": true,
     "log/*": true,
     "doc/*": true,
+    "node_modules/*": true,
     ".yardoc/*": true,
     "**/widget_docs/*": true,
     "**/db/migrate/2011*": true,

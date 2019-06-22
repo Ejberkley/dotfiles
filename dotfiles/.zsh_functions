@@ -186,9 +186,17 @@ t() {
 ship() {
   set_git_repo_url
   set_git_branch
-  if [[ "$git_repo_url/$git_branch" =~ 'https://github.com/(.*)' ]]; then
+
+  local environment="$git_branch"
+  local end_path=''
+  if [[ $environment == 'master' ]]; then
+    local environment='production'
+    local end_path='/pull_requests'
+  fi
+
+  if [[ "$git_repo_url/$environment" =~ 'https://github.com/(.*)' ]]; then
     local stack=$match[1]
-    open "https://admin.optimal.com/shipit/$stack"
+    open "https://admin.optimal.com/shipit/$stack$end_path"
   else
     echo "Not a git repository"
   fi
