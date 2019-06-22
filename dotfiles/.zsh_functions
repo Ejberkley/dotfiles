@@ -308,7 +308,12 @@ load_xcode() {
 
   # Key bindings
   rm ~/Library/Developer/Xcode/UserData/KeyBindings/Default.idekeybindings
-  ln -s ~/dotfiles/settings/xcode/Default.idekeybindings ~/Library/Developer/Xcode/UserData/KeyBindings/Default.idekeybindings
+  cp ~/dotfiles/settings/xcode/Default.idekeybindings ~/Library/Developer/Xcode/UserData/KeyBindings/Default.idekeybindings
+}
+
+save_xcode() {
+  rm ~/dotfiles/settings/xcode/Default.idekeybindings
+  cp ~/Library/Developer/Xcode/UserData/KeyBindings/Default.idekeybindings ~/dotfiles/settings/xcode/Default.idekeybindings
 }
 
 
