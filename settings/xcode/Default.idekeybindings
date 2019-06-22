@@ -299,12 +299,11 @@
 			<key>~$</key>
 			<array>
 				<string>moveToBeginningOfLine:</string>
+				<string>deleteToEndOfLine:</string>
+				<string>yank:</string>
+				<string>insertNewline:</string>
 				<string>moveToBeginningOfLine:</string>
-				<string>moveToEndOfTextAndModifySelection:</string>
-				<string>copy:</string>
-				<string>moveToEndOfLine:</string>
-				<string>insertNewlineIgnoringFieldEditor:</string>
-				<string>paste:</string>
+				<string>yank:</string>
 			</array>
 		</dict>
 		<key>Version</key>
