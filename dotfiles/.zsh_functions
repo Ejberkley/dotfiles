@@ -307,8 +307,8 @@ load_xcode() {
   sudo ln -s ~/dotfiles/settings/xcode/IDETextKeyBindingSet.plist /Applications/Xcode.app/Contents/Frameworks/IDEKit.framework/Resources/IDETextKeyBindingSet.plist
 
   # Key bindings
-  sudo rm ~/Library/Developer/Xcode/UserData/KeyBindings/Default.idekeybindings
-  sudo ln -s ~/dotfiles/settings/xcode/Default.idekeybindings ~/Library/Developer/Xcode/UserData/KeyBindings/Default.idekeybindings
+  rm ~/Library/Developer/Xcode/UserData/KeyBindings/Default.idekeybindings
+  ln -s ~/dotfiles/settings/xcode/Default.idekeybindings ~/Library/Developer/Xcode/UserData/KeyBindings/Default.idekeybindings
 }
 
 
