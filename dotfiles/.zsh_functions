@@ -301,6 +301,10 @@ unsym() {
   fi
 }
 
+load_xcode() {
+  sudo rm /Applications/Xcode.app/Contents/Frameworks/IDEKit.framework/Resources/IDETextKeyBindingSet.plist
+  sudo ln -s ~/dotfiles/settings/xcode/IDETextKeyBindingSet.plist /Applications/Xcode.app/Contents/Frameworks/IDEKit.framework/Resources/IDETextKeyBindingSet.plist
+}
 
 
 
