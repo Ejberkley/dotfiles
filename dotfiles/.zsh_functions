@@ -101,9 +101,9 @@ upce() {
   git commit -am 'Upgrade chimera-edu'
   push
   hub pull-request --no-edit
-  local version="$(hub pr list)"
+  local first_pr="$(hub pr list -h $git_branch)"
   set_git_repo_url
-  if [[ $version =~ "#([0-9]*)" ]]; then
+  if [[ $first_pr =~ "#([0-9]*)" ]]; then
     echo "${git_repo_url}/pull/${match[1]}"
     open $git_repo_url/pull/$match[1]
   else
@@ -422,4 +422,145 @@ show_colors() {
   echo -e "\e[96;107;2;1m Cyan    \e[96;40;2;1m Cyan    \e[0m"
   echo -e "\e[34;107;2;1m Blue    \e[34;40;2;1m Blue    \e[0m"
   echo -e "\e[94;107;2;1m Blue    \e[94;40;2;1m Blue    \e[0m"
+}
+
+#### Pull Request Stuff #####
+function postSlack() {
+  PR_URL=$1
+  COMM=$2
+  FLAG=$3
+  ATUSER=$4
+  source ~/.config/shipit
+  curl -X POST --data-urlencode "payload={\"channel\": \"#pr-devs\", \"username\": \"$name\", \"text\": \"$PR_URL :$FLAG: $COMM $ATUSER\", \"icon_emoji\": \":$FLAG:\"}" $SLACK_HOOK_URL
+  return
+}
+
+function shipit() {
+  set_git_branch
+  set_git_repo_url
+  local first_pr="$(hub pr list -h $git_branch)"
+  if [[ $first_pr =~ "#([0-9]*)" ]]; then
+    PR_URL="${git_repo_url}/pull/${match[1]}"
+  else
+    echo "No pull requests found"
+    return
+  fi
+
+  get_project
+
+  source ~/.config/shipit
+  curl -H "Content-Type: application/json" -s -d "{\"number_or_url\":\"$PR_URL\", \"email\":\"$email\", \"stack_id\":$PROJ}" --header "Authorization: Token token=\"$oauth_token\", email=\"$email\"" -X POST https://admin.optimal.com/api/v1/shipit/pull_requests | jq -r '.message'
+}
+
+function get_project() {
+    PROJ=${PWD##*/}
+    case $PROJ in
+        "nursingcareer")
+            [[ "$BASE" == "master" ]] && PROJ=24
+            [[ "$BASE" == "staging" ]] && PROJ=25
+        ;;
+        "onlineu")
+            [[ "$BASE" == "master" ]] && PROJ=34
+            [[ "$BASE" == "staging" ]] && PROJ=7
+        ;;
+        "gradprograms")
+            [[ "$BASE" == "master" ]] && PROJ=4
+            [[ "$BASE" == "staging" ]] && PROJ=9
+        ;;
+        "gradreports")
+            [[ "$BASE" == "beta" ]] && PROJ=38
+            [[ "$BASE" == "master" ]] && PROJ=3
+            [[ "$BASE" == "staging" ]] && PROJ=10
+        ;; 
+        "socialworkdegree")
+            [[ "$BASE" == "master" ]] && PROJ=23
+            [[ "$BASE" == "staging" ]] && PROJ=26
+        ;;
+        "gtos")
+            [[ "$BASE" == "beta" ]] && PROJ=39
+            [[ "$BASE" == "master" ]] && PROJ=2
+            [[ "$BASE" == "staging" ]] && PROJ=8
+        ;;
+        "guide")
+            [[ "$BASE" == "master" ]] && PROJ=35
+        ;;
+        "chimera-edu")
+            [[ "$BASE" == "master" ]] && PROJ=37
+        ;;
+        "chimera")
+            [[ "$BASE" == "master" ]] && PROJ=41
+        ;;
+        "chimera-widget")
+            [[ "$BASE" == "master" ]] && PROJ=42
+        ;;
+        "optimal")
+            [[ "$BASE" == "master" ]] && PROJ=48
+        ;;
+        "reach-admin")
+            [[ "$BASE" == "master" ]] && PROJ=19
+        ;;
+        "talentdesk")
+            [[ "$BASE" == "master" ]] && PROJ=15
+            [[ "$BASE" == "staging" ]] && PROJ=36
+        ;;
+        "postly")
+            [[ "$BASE" == "master" ]] && PROJ=20
+            [[ "$BASE" == "staging" ]] && PROJ=21
+        ;;
+        "redirections")
+            [[ "$BASE" == "master" ]] && PROJ=30
+        ;;
+        "switchup")
+            [[ "$BASE" == "master" ]] && PROJ=31
+            [[ "$BASE" == "staging" ]] && PROJ=32
+            [[ "$BASE" == "beta" ]] && PROJ=33
+        ;;
+        "td-chimera-widgets")
+            [[ "$BASE" == "master" ]] && PROJ=40
+        ;;
+        "edu-chimera-widgets")
+            [[ "$BASE" == "master" ]] && PROJ=37
+        ;;
+        "reach_analytics")
+            [[ "$BASE" == "master" ]] && PROJ=44
+        ;;
+        "outreach-edu")
+            [[ "$BASE" == "master" ]] && PROJ=45
+        ;;
+        "outreach-td")
+            [[ "$BASE" == "master" ]] && PROJ=46
+        ;;
+        "outreach")
+            [[ "$BASE" == "master" ]] && PROJ=22
+            [[ "$BASE" == "staging" ]] && PROJ=27
+        ;;
+        "td_admin")
+            [[ "$BASE" == "master" ]] && PROJ=17
+            [[ "$BASE" == "staging" ]] && PROJ=18
+        ;;
+        "howtobecome")
+            [[ "$BASE" == "master" ]] && PROJ=6
+            [[ "$BASE" == "staging" ]] && PROJ=14
+            [[ "$BASE" == "beta" ]] && PROJ=51
+        ;;
+        "cnd")
+            [[ "$BASE" == "master" ]] && PROJ=5
+            [[ "$BASE" == "beta" ]] && PROJ=49
+            [[ "$BASE" == "staging" ]] && PROJ=11
+        ;;
+        "hermes")
+            [[ "$BASE" == "master" ]] && PROJ=28
+            [[ "$BASE" == "staging" ]] && PROJ=29
+        ;;
+        "sr_corp")
+            [[ "$BASE" == "master" ]] && PROJ=12
+            [[ "$BASE" == "staging" ]] && PROJ=13
+        ;;
+        "optimal-docs")
+            [[ "$BASE" == "master" ]] && PROJ=47
+        ;;
+        *)
+            PROJ="not on shipit"
+        ;;
+    esac
 }

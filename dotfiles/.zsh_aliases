@@ -42,7 +42,7 @@ alias td="cd ~/work/talentdesk"
 alias c="git checkout"
 alias cb="git checkout -b"
 alias cm="git checkout master; git pull"
-alias cc="git checkout beta; git pull"
+alias cs="git checkout staging; git pull"
 alias co="git commit"
 alias del="git branch -D"
 alias ga="git add"
@@ -66,9 +66,11 @@ alias deploy='bundle exec cap production deploy'
 alias stage='bundle exec cap staging deploy'
 alias beta='bundle exec cap beta deploy'
 alias rp='puma-dev -stop'
+alias opr='sh ~/work/shell-scripts/pr-open.sh'
 
 alias rc="redis-commander"
 alias rc_tunnel="ssh -N -L 7979:$REDIS_HOST:7979 charon-edu"
+alias rrc_tunnel="ssh -N -L 7980:$REACH_REDIS_HOST:7979 charon-edu"
 
 alias degreepage_tunnel="ssh -N -L 3305:$DEGREEPAGE_HOST:3306 acheron1-edu"
 alias sql_live="mysql -u$DEGREEPAGE_USER -p$DEGREEPAGE_PASSWORD --port=3305 --host=127.0.0.1"
