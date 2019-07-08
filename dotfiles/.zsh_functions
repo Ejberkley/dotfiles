@@ -101,13 +101,24 @@ upce() {
   git commit -am 'Upgrade chimera-edu'
   push
   hub pull-request --no-edit
-  local first_pr="$(hub pr list -h $git_branch)"
-  set_git_repo_url
-  if [[ $first_pr =~ "#([0-9]*)" ]]; then
-    echo "${git_repo_url}/pull/${match[1]}"
-    open $git_repo_url/pull/$match[1]
-  else
+
+  set_pr_url
+  if [[ $pr_url == '' ]]; then
     echo "Error opening PR in browser"
+  else
+    echo $pr_url
+    open $pr_url
+  fi
+}
+
+set_pr_url() {
+  set_git_branch
+  set_git_repo_url
+  local first_pr="$(hub pr list -h $git_branch)"
+  if [[ $first_pr =~ "#([0-9]*)" ]]; then
+    pr_url="${git_repo_url}/pull/${match[1]}"
+  else
+    pr_url = ''
   fi
 }
 
@@ -425,18 +436,31 @@ show_colors() {
 }
 
 #### Pull Request Stuff #####
-function postSlack() {
-  PR_URL=$1
-  COMM=$2
-  FLAG=$3
-  ATUSER=$4
+function slack() {
+  set_pr_url
+  if [[ $pr_url == '' ]]; then
+    echo "Error getting PR url"
+    return
+  fi
+
+  message="$(hub pr list -h $git_branch -f '%t')"
+  icon='large_blue_diamond'
+  tag_user=$1
+
   source ~/.config/shipit
-  curl -X POST --data-urlencode "payload={\"channel\": \"#pr-devs\", \"username\": \"$name\", \"text\": \"$PR_URL :$FLAG: $COMM $ATUSER\", \"icon_emoji\": \":$FLAG:\"}" $SLACK_HOOK_URL
-  return
+
+  curl -X POST --data-urlencode "payload={\"channel\": \"#pr-devs\", \"username\": \"$name\", \"text\": \"$pr_url :$icon: $message <@$tag_user>\", \"icon_emoji\": \":$icon:\"}" $SLACK_HOOK_URL
 }
 
 function shipit() {
-  set_git_branch
+  set_pr_url
+  if [[ $pr_url == '' ]]; then
+    echo "Error opening PR in browser"
+  else
+    echo $pr_url
+    open $pr_url
+  fi
+
   set_git_repo_url
   local first_pr="$(hub pr list -h $git_branch)"
   if [[ $first_pr =~ "#([0-9]*)" ]]; then
