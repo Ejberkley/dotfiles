@@ -200,7 +200,7 @@ ship() {
 
   local environment="$git_branch"
   local end_path=''
-  if [[ $environment == 'master' ]]; then
+  if [[ $environment != 'staging' ]]; then
     local environment='production'
     local end_path='/pull_requests'
   fi
@@ -435,8 +435,16 @@ show_colors() {
   echo -e "\e[94;107;2;1m Blue    \e[94;40;2;1m Blue    \e[0m"
 }
 
+orig() {
+  rm ./**/*.orig
+  rm ./**/*_BACKUP_*
+  rm ./**/*_BASE_*
+  rm ./**/*_LOCAL_*
+  rm ./**/*_REMOTE_*
+}
+
 #### Pull Request Stuff #####
-function slack() {
+slack() {
   set_pr_url
   if [[ $pr_url == '' ]]; then
     echo "Error getting PR url"
@@ -449,16 +457,23 @@ function slack() {
 
   source ~/.config/shipit
 
-  curl -X POST --data-urlencode "payload={\"channel\": \"#pr-devs\", \"username\": \"$name\", \"text\": \"$pr_url :$icon: $message <@$tag_user>\", \"icon_emoji\": \":$icon:\"}" $SLACK_HOOK_URL
+  if [[ $pr_url == '' ]]; then
+    echo "Error getting PR url"
+    return
+  fi
+
+  if [[ ${#} == 1 ]]; then
+    curl -X POST --data-urlencode "payload={\"channel\": \"#pr-devs\", \"username\": \"$name\", \"text\": \"$pr_url :$icon: $message <@$tag_user>\", \"icon_emoji\": \":$icon:\"}" $SLACK_HOOK_URL
+  else
+    curl -X POST --data-urlencode "payload={\"channel\": \"#pr-devs\", \"username\": \"$name\", \"text\": \"$pr_url :$icon: $message\", \"icon_emoji\": \":$icon:\"}" $SLACK_HOOK_URL
+  fi
 }
 
-function shipit() {
+shipit() {
   set_pr_url
   if [[ $pr_url == '' ]]; then
-    echo "Error opening PR in browser"
-  else
-    echo $pr_url
-    open $pr_url
+    echo "Error getting PR url"
+    return
   fi
 
   set_git_repo_url
@@ -470,13 +485,14 @@ function shipit() {
     return
   fi
 
+  BASE='master'
   get_project
 
   source ~/.config/shipit
   curl -H "Content-Type: application/json" -s -d "{\"number_or_url\":\"$PR_URL\", \"email\":\"$email\", \"stack_id\":$PROJ}" --header "Authorization: Token token=\"$oauth_token\", email=\"$email\"" -X POST https://admin.optimal.com/api/v1/shipit/pull_requests | jq -r '.message'
 }
 
-function get_project() {
+get_project() {
     PROJ=${PWD##*/}
     case $PROJ in
         "nursingcareer")
