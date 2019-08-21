@@ -10,8 +10,10 @@
   "editor.renderWhitespace": "all",
   "editor.renderControlCharacters": true,
   "editor.renderIndentGuides": true,
-  
-  "editor.rulers": [80,120],
+  "editor.rulers": [
+    80,
+    120
+  ],
   "editor.detectIndentation": false,
   "editor.tabSize": 2,
   "editor.wordWrap": "on",
@@ -28,12 +30,10 @@
   },
   "workbench.editor.enablePreview": false,
   "workbench.startupEditor": "none",
-
   // Allow comments in json files
   "files.associations": {
     "*.json": "jsonc"
   },
-
   "files.exclude": {
     "**/.git": true,
     "**/.svn": true,
@@ -80,19 +80,28 @@
     "**/db/archived_migrations": true,
     "**/public/packs/*": true
   },
-
   "search.exclude": {
     "**/db/schema.rb": true,
     "**/db/migrate": true,
     "**/db/archived_migrations": true,
   },
-
-  /* Plugins */
+  /* Linters */
   "eslint.run": "onSave",
-
+  "ruby.format": "rubocop",
+  "ruby.rubocop.onSave": true,
+  "[ruby]": {
+    // "editor.formatOnSave": true,
+    "editor.defaultFormatter": "misogi.ruby-rubocop"
+  },
+  // "editor.formatOnSave": false,
+  // "editor.formatOnSaveTimeout": 5000,
+  // "editor.formatOnType": true,
+  // "editor.formatOnPaste": true,
+  // "ruby.rubocop.executePath": "/Users/brennen/.rbenv/shims/",
   // Prevent default linters from interfering with stylelint
   "css.validate": false,
   "less.validate": false,
   "scss.validate": false,
-  "breadcrumbs.enabled": true
+  "breadcrumbs.enabled": true,
+  "eslint.alwaysShowStatus": true
 }

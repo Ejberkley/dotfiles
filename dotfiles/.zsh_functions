@@ -463,9 +463,13 @@ slack() {
   fi
 
   if [[ ${#} == 1 ]]; then
-    curl -X POST --data-urlencode "payload={\"channel\": \"#pr-devs\", \"username\": \"$name\", \"text\": \"$pr_url :$icon: $message <@$tag_user>\", \"icon_emoji\": \":$icon:\"}" $SLACK_HOOK_URL
+    curl -X POST -H "Authorization: Bearer $SLACK_API_TOKEN" \
+    -H 'Content-type: application/json; charset=utf-8' \
+    --data "{\"channel\": \"@brennen\", \"as_user\": \"true\", \"text\": \"$pr_url :$icon: $message <@$tag_user>\"}" https://slack.com/api/chat.postMessage
   else
-    curl -X POST --data-urlencode "payload={\"channel\": \"#pr-devs\", \"username\": \"$name\", \"text\": \"$pr_url :$icon: $message\", \"icon_emoji\": \":$icon:\"}" $SLACK_HOOK_URL
+    curl -X POST -H "Authorization: Bearer $SLACK_API_TOKEN" \
+    -H 'Content-type: application/json; charset=utf-8' \
+    --data "{\"channel\": \"@brennen\", \"as_user\": \"true\", \"text\": \"$pr_url :$icon: $message\"}" https://slack.com/api/chat.postMessage
   fi
 }
 
