@@ -455,7 +455,7 @@ slack() {
   icon='large_blue_diamond'
   tag_user=$1
 
-  source ~/.config/shipit
+  source ~/.config/optimal
 
   if [[ $pr_url == '' ]]; then
     echo "Error getting PR url"
@@ -465,11 +465,11 @@ slack() {
   if [[ ${#} == 1 ]]; then
     curl -X POST -H "Authorization: Bearer $SLACK_API_TOKEN" \
     -H 'Content-type: application/json; charset=utf-8' \
-    --data "{\"channel\": \"@brennen\", \"as_user\": \"true\", \"text\": \"$pr_url :$icon: $message <@$tag_user>\"}" https://slack.com/api/chat.postMessage
+    --data "{\"channel\": \"#pr-devs\", \"as_user\": \"true\", \"text\": \"$pr_url :$icon: $message <@$tag_user>\"}" https://slack.com/api/chat.postMessage
   else
     curl -X POST -H "Authorization: Bearer $SLACK_API_TOKEN" \
     -H 'Content-type: application/json; charset=utf-8' \
-    --data "{\"channel\": \"@brennen\", \"as_user\": \"true\", \"text\": \"$pr_url :$icon: $message\"}" https://slack.com/api/chat.postMessage
+    --data "{\"channel\": \"#pr-devs\", \"as_user\": \"true\", \"text\": \"$pr_url :$icon: $message\"}" https://slack.com/api/chat.postMessage
   fi
 }
 
@@ -492,7 +492,7 @@ shipit() {
   BASE='master'
   get_project
 
-  source ~/.config/shipit
+  source ~/.config/optimal
   curl -H "Content-Type: application/json" -s -d "{\"number_or_url\":\"$PR_URL\", \"email\":\"$email\", \"stack_id\":$PROJ}" --header "Authorization: Token token=\"$oauth_token\", email=\"$email\"" -X POST https://admin.optimal.com/api/v1/shipit/pull_requests | jq -r '.message'
 }
 

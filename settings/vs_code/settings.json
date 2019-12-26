@@ -71,6 +71,10 @@
     "**/db/migrate/201901*": true,
     "**/db/migrate/201902*": true,
     "**/db/migrate/201903*": true,
+    "**/db/migrate/201904*": true,
+    "**/db/migrate/201905*": true,
+    "**/db/migrate/201906*": true,
+    "**/db/migrate/201907*": true,
     "**/db/migrate_govt_db/2013*": true,
     "**/db/migrate_govt_db/2014*": true,
     "**/db/migrate_govt_db/2015*": true,
@@ -84,6 +88,10 @@
     "**/db/schema.rb": true,
     "**/db/migrate": true,
     "**/db/archived_migrations": true,
+    "**/db/public": true,
+    "**/db/log": true,
+    "**/*.dat": true,
+    "**/*.mmdb": true
   },
   /* Linters */
   "eslint.run": "onSave",

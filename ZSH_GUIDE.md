@@ -22,8 +22,6 @@ More codes can be found [here](http://zsh.sourceforge.net/Doc/Release/Prompt-Exp
 | ---- | ------ |
 0 | Reset all attributes
 1 | Bold
-0 | Reset all attributes
-1 | Bold
 2 | Dim
 3 | Italics
 4 | Underline
