@@ -8,37 +8,6 @@ alias load="source ~/.zshrc"
 alias desk="cd ~/desktop"
 alias dot="cd ~/dotfiles"
 alias back="c HEAD~1"
-alias ai="cd ~/documents/artificial_intelligence"
-
-alias stocks="cd ~/icloud/'Software Projects'/stocks"
-
-alias w="cd ~/work"
-alias fly="cd ~/fly"
-
-# Project aliases
-alias hg="cd ~/work/hydragem"
-alias cnd="cd ~/work/cnd"
-alias ec2="cd ~/work/ec2worker"
-alias ce="cd ~/work/chimera-edu"
-alias ch="cd ~/work/chimera"
-alias cw="cd ~/work/chimera-widget"
-alias es="elasticsearch"
-alias g="cd ~/work/guide"
-alias gp="cd ~/work/gradprograms"
-alias gr="cd ~/work/gradreports"
-alias gtos="cd ~/work/gtos"
-alias h2b="cd ~/work/howtobecome"
-alias lh="cd ~/work/lighthouse"
-alias or="cd ~/work/outreach"
-alias ou="cd ~/work/onlineu"
-alias ojs="cd ~/work/optimal-js"
-alias rad="cd ~/work/reach-admin"
-alias ran="cd ~/work/reach_analytics"
-alias nc="cd ~/work/nursingcareer"
-alias swd="cd ~/work/socialworkdegree"
-alias su="cd ~/work/switchup"
-alias td="cd ~/work/talentdesk"
-alias st="cd ~/work/search-terms"
 
 # Shortcuts
 alias c="git checkout"
@@ -49,37 +18,10 @@ alias co="git commit"
 alias del="git branch -D"
 alias ga="git add"
 alias force="git push --force-with-lease"
-alias dlog="tail -f log/development.log"
-alias tlog="tail -f log/test.log"
-alias sot="open -a SourceTree ."
-alias pos="cd ~/icloud/pos"
-alias u="rp;"
 alias undo="git reset HEAD~1"
 alias amend="git commit -a --amend"
-alias postly="bundle exec rackup -p 2000"
 
 alias d="git diff"
 alias s="git status"
 
 alias b="git branch"
-alias be="bundle exec"
-alias deploy='bundle exec cap production deploy'
-alias stage='bundle exec cap staging deploy'
-alias beta='bundle exec cap beta deploy'
-alias rp='puma-dev -stop'
-
-alias rc="redis-commander"
-alias rc_tunnel="ssh -N -L 7979:$REDIS_HOST:7979 charon1-edu"
-alias rrc_tunnel="ssh -N -L 7980:$REACH_REDIS_HOST:7979 charon-edu"
-alias orc_tunnel="ssh -N -L 7981:$OUTREACH_REDIS_HOST:7979 acheron1-outreach"
-
-alias degreepage_tunnel="ssh -N -L 3305:$DEGREEPAGE_HOST:3306 acheron1-edu"
-alias sql_live="mysql -u$DEGREEPAGE_USER -p$DEGREEPAGE_PASSWORD --port=3305 --host=127.0.0.1"
-
-alias ip="echo 67.170.36.195"
-
-alias get_keyword_coverages="mysqldump -h127.0.0.1 --port=1234 -udbaccess -p --where=\"date>='2019-12-01'\" > ~/desktop/keyword_coverages.sql degreepage m_weekly_keyword_coverages --single-transaction"
-alias degreepage_tunnel="ssh -N -L 1234:oceanus-backup-edu.c4ys426fy8qv.us-east-1.rds.amazonaws.com:3306 nile-edu"
-
-# alias opr="~/work/shell-scripts/pr-open.sh"
-# [[ -f ~/work/shell-scripts/scripts.sh ]] && source ~/work/shell-scripts/scripts.sh
