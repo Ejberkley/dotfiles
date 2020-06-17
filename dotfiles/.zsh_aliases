@@ -8,8 +8,12 @@ alias load="source ~/.zshrc"
 alias desk="cd ~/desktop"
 alias dot="cd ~/dotfiles"
 alias back="c HEAD~1"
+alias wp="cd ~/workplace"
 
 # Shortcuts
+alias bb="brazil-build"
+alias nds="ninja-dev-sync"
+
 alias c="git checkout"
 alias cb="git checkout -b"
 alias cm="git checkout master; git pull"

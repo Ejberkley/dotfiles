@@ -58,6 +58,7 @@
     "doc/*": true,
   },
   "search.exclude": {
+    "**/versionSets": true,
     "**/db/schema.rb": true,
     "**/db/migrate": true,
     "**/db/archived_migrations": true,
@@ -84,5 +85,7 @@
   "less.validate": false,
   "scss.validate": false,
   "breadcrumbs.enabled": true,
-  "eslint.alwaysShowStatus": true
+  "eslint.alwaysShowStatus": true,
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue"
 }
