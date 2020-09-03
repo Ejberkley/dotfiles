@@ -9,14 +9,17 @@ alias desk="cd ~/desktop"
 alias dot="cd ~/dotfiles"
 alias back="c HEAD~1"
 alias wp="cd ~/workplace"
+alias shiba="cd ~/workplace/SSMShibaService/src/SSMShibaService"
 
 # Shortcuts
 alias bb="brazil-build"
 alias nds="ninja-dev-sync"
 
+alias st='open -a SourceTree .'
+
 alias c="git checkout"
 alias cb="git checkout -b"
-alias cm="git checkout master; git pull"
+alias cm="git checkout mainline; git pull"
 alias cs="git checkout staging; git pull"
 alias co="git commit"
 alias del="git branch -D"

@@ -56,6 +56,10 @@
     "tmp/*": true,
     "log/*": true,
     "doc/*": true,
+    "**/.classpath": true,
+    "**/.project": true,
+    "**/.settings": true,
+    "**/.factorypath": true
   },
   "search.exclude": {
     "**/versionSets": true,
@@ -65,7 +69,8 @@
     "**/db/public": true,
     "**/db/log": true,
     "**/*.dat": true,
-    "**/*.mmdb": true
+    "**/*.mmdb": true,
+    "**/build/**": true
   },
   /* Linters */
   "eslint.run": "onSave",
@@ -87,5 +92,10 @@
   "breadcrumbs.enabled": true,
   "eslint.alwaysShowStatus": true,
   "editor.suggestSelection": "first",
-  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue"
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "java.home": "/Library/Java/JavaVirtualMachines/jdk-11.0.5.jdk/Contents/Home",
+  "java.semanticHighlighting.enabled": true,
+  "[java]": {
+    "editor.defaultFormatter": "redhat.java"
+  }
 }
