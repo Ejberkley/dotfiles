@@ -10,10 +10,19 @@ alias dot="cd ~/dotfiles"
 alias back="c HEAD~1"
 alias wp="cd ~/workplace"
 alias shiba="cd ~/workplace/SSMShibaService/src/SSMShibaService"
+alias tests="cd ~/workplace/SSMShibaServiceTests/src/SSMShibaServiceTests"
+alias canary="cd ~/workplace/SSMShibaServiceCanary/src/SSMShibaServiceCanary"
+alias se="cd ~/workplace/Singularity-Extensions/src/Singularity-Extensions"
+alias ss="cd ~/workplace/Saluki-Server/src/Saluki-Server"
 
 # Shortcuts
 alias bb="brazil-build"
+alias bws="brazil ws"
+alias wsc="brazil ws create --name"
+alias wsu="brazil ws use -p"
 alias nds="ninja-dev-sync"
+
+alias idea='open -na "IntelliJ IDEA.app"'
 
 alias st='open -a SourceTree .'
 
@@ -27,8 +36,15 @@ alias ga="git add"
 alias force="git push --force-with-lease"
 alias undo="git reset HEAD~1"
 alias amend="git commit -a --amend"
+alias amendnow="git commit -a --amend --date=\"now\""
 
 alias d="git diff"
 alias s="git status"
 
 alias b="git branch"
+
+alias nuke="bb clean && brazil ws clean && brazil ws sync --md && rm -rf build && rm -rf dtmp && bb release;"
+
+alias tool="ssh ec2-shiba-tool-pdx-64001.pdx4.amazon.com"
+
+alias awsg="aws --endpoint-url https://sonic.us-east-1.amazonaws.com"

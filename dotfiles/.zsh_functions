@@ -29,6 +29,14 @@ f() {
   fi
 }
 
+ws() {
+  brazil ws create --name $1
+  cd $1
+  brazil ws use -p $1
+  cd src/$1
+  code .
+}
+
 create_workspace() {
   brazil ws create --name $1
   cd $1

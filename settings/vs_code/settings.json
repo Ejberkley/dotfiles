@@ -14,7 +14,6 @@
     80,
     120
   ],
-  "editor.detectIndentation": false,
   "editor.tabSize": 2,
   "editor.wordWrap": "on",
   "editor.wrappingIndent": "indent",
@@ -23,7 +22,6 @@
   "explorer.confirmDelete": false,
   "ruby.intellisense": "rubyLocate",
   "window.restoreWindows": "all",
-  "window.zoomLevel": 0,
   "workbench.colorCustomizations": {
     "editorRuler.foreground": "#2c2c2c"
   },
@@ -97,5 +95,10 @@
   "java.semanticHighlighting.enabled": true,
   "[java]": {
     "editor.defaultFormatter": "redhat.java"
-  }
+  },
+  "debug.node.autoAttach": "on",
+  "debug.javascript.autoAttachFilter": "always",
+  "extensions.ignoreRecommendations": true,
+  "gitlens.currentLine.scrollable": false,
+  "typescript.autoClosingTags": true
 }
