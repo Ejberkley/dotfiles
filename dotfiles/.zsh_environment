@@ -12,3 +12,7 @@ export NVM_DIR="$HOME/.nvm"
 export NODE_OPTIONS=--max_old_space_size=4096
 
 eval "$(pyenv init -)"
+
+alias bundler="~/.rbenv/shims/bundler"
+alias bundle="~/.rbenv/shims/bundle"
+alias gem="~/.rbenv/shims/gem"

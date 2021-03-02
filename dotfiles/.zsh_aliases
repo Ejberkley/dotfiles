@@ -15,12 +15,18 @@ alias canary="cd ~/workplace/SSMShibaServiceCanary/src/SSMShibaServiceCanary"
 alias se="cd ~/workplace/Singularity-Extensions/src/Singularity-Extensions"
 alias ss="cd ~/workplace/Saluki-Server/src/Saluki-Server"
 
+# Workspaces
+alias fe="cd ~/workplace/charismanspectfrontendlambda/src/charismanspectfrontendlambda"
+alias be="cd ~/workplace/charismanspectbackendlambda/src/charismanspectbackendlambda"
+alias wa="cd ~/workplace/charismanspectfrontendlambda/src/charismanspectwebapplication"
+
 # Shortcuts
 alias bb="brazil-build"
 alias bws="brazil ws"
 alias wsc="brazil ws create --name"
 alias wsu="brazil ws use -p"
 alias nds="ninja-dev-sync"
+alias al2="brazil ws use --platform AL2_x86_64"
 
 alias idea='open -na "IntelliJ IDEA.app"'
 

@@ -29,12 +29,32 @@ f() {
   fi
 }
 
+deploy_emily() {
+  cd ~/documents/emjoyart.com
+  echo "\n===== Saving changes to github =====\n"
+  git add --all
+  git commit -m "Website updates"
+  git push
+
+  echo "\n===== Building site =====\n"
+  bundle exec jekyll build
+
+  echo "\n===== Uploading files =====\n"
+  aws s3 sync _site s3://emjoyart-customresourcestack-1shlt72-s3bucketroot-m98w21m3n0eg --delete
+
+  echo "\n===== Clearing CloudFront cache =====\n"
+  aws cloudfront create-invalidation --distribution-id EWGA7J089VJDH --paths "/*"
+
+  echo "\n===== Done =====\n"
+  sleep 5
+}
+
 ws() {
   brazil ws create --name $1
   cd $1
   brazil ws use -p $1
   cd src/$1
-  code .
+  idea .
 }
 
 create_workspace() {
