@@ -1,5 +1,8 @@
 #!/bin/zsh
 
+# Change this to whatever text editor you use (code, vim, nano, etc.)
+EDITOR="idea"
+
 # Zsh config options
 zle_highlight+=(paste:none)
 
@@ -20,11 +23,12 @@ bindkey "^[[A" up-line-or-beginning-search
 bindkey "^[[B" down-line-or-beginning-search
 
 # Load the rest of the files
-source ~/.zsh_prompt
+source ~/.zsh_environment_name
 source ~/.zsh_environment
 source ~/.zsh_secrets
 source ~/.zsh_aliases
 source ~/.zsh_functions
+source ~/.zsh_prompt
 
 # Set the tab title
 DISABLE_AUTO_TITLE="true"

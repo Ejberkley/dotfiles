@@ -1,5 +1,15 @@
 #!/bin/zsh
 
+# Delete backup files related to merge conflicts
+orig() {
+  rm ./**/*.orig
+  rm ./**/*_BACKUP_*
+  rm ./**/*_BASE_*
+  rm ./**/*_LOCAL_*
+  rm ./**/*_REMOTE_*
+}
+
+# Pushes a branch to origin, creating a remote branch if necessary
 push() {
   local ref="$(git symbolic-ref HEAD 2>&1)"
   if [[ $ref =~ 'fatal: not a git repository' ]]; then
@@ -20,7 +30,7 @@ push() {
   fi
 }
 
-# Open a finder window in the directory given, or the current directory if none is specified
+# Open a finder window in the directory given, or in the current directory if none is specified
 f() {
   if [ $# -eq 0 ]; then
     open .
@@ -29,59 +39,8 @@ f() {
   fi
 }
 
-deploy_emily() {
-  cd ~/documents/emjoyart.com
-  echo "\n===== Saving changes to github =====\n"
-  git add --all
-  git commit -m "Website updates"
-  git push
-
-  echo "\n===== Building site =====\n"
-  bundle exec jekyll build
-
-  echo "\n===== Uploading files =====\n"
-  aws s3 sync _site s3://emjoyart-customresourcestack-1shlt72-s3bucketroot-m98w21m3n0eg --delete
-
-  echo "\n===== Clearing CloudFront cache =====\n"
-  aws cloudfront create-invalidation --distribution-id EWGA7J089VJDH --paths "/*"
-
-  echo "\n===== Done =====\n"
-  sleep 5
-}
-
-ws() {
-  brazil ws create --name $1
-  cd $1
-  brazil ws use -p $1
-  cd src/$1
-  idea .
-}
-
-create_workspace() {
-  brazil ws create --name $1
-  cd $1
-  brazil ws use -p $1
-  cd ..
-}
-
-load_xcode() {
-  # Custom actions
-  sudo rm /Applications/Xcode.app/Contents/Frameworks/IDEKit.framework/Resources/IDETextKeyBindingSet.plist
-  sudo ln -s ~/dotfiles/settings/xcode/IDETextKeyBindingSet.plist /Applications/Xcode.app/Contents/Frameworks/IDEKit.framework/Resources/IDETextKeyBindingSet.plist
-
-  # Key bindings
-  rm ~/Library/Developer/Xcode/UserData/KeyBindings/Default.idekeybindings
-  cp ~/dotfiles/settings/xcode/Default.idekeybindings ~/Library/Developer/Xcode/UserData/KeyBindings/Default.idekeybindings
-}
-
-save_xcode() {
-  rm ~/dotfiles/settings/xcode/Default.idekeybindings
-  cp ~/Library/Developer/Xcode/UserData/KeyBindings/Default.idekeybindings ~/dotfiles/settings/xcode/Default.idekeybindings
-}
-
-
-
-# Print all the colors (useful for seeing what they look like in your particular terminal)
+# Print all the available colors (useful for seeing what they look like in your particular terminal
+# and choosing colors for prompts or other scripts
 show_colors() {
   echo -e "\e[30;107m Black   \e[30;40m Black   \e[30;040m  Black   \e[97;040m Black   \e[0m"
   echo -e "\e[90;107m Gray    \e[90;40m Gray    \e[30;100m  Gray    \e[97;100m Gray    \e[0m"
@@ -144,11 +103,23 @@ show_colors() {
   echo -e "\e[94;107;2;1m Blue    \e[94;40;2;1m Blue    \e[0m"
 }
 
-orig() {
-  rm ./**/*.orig
-  rm ./**/*_BACKUP_*
-  rm ./**/*_BASE_*
-  rm ./**/*_LOCAL_*
-  rm ./**/*_REMOTE_*
-}
+# Deploy emily's art website
+deploy_emily() {
+  cd ~/documents/emjoyart.com
+  echo "\n===== Saving changes to github =====\n"
+  git add --all
+  git commit -m "Website updates"
+  git push
 
+  echo "\n===== Building site =====\n"
+  bundle exec jekyll build
+
+  echo "\n===== Uploading files =====\n"
+  aws s3 sync _site s3://emjoyart-customresourcestack-1shlt72-s3bucketroot-m98w21m3n0eg --delete
+
+  echo "\n===== Clearing CloudFront cache =====\n"
+  aws cloudfront create-invalidation --distribution-id EWGA7J089VJDH --paths "/*"
+
+  echo "\n===== Done =====\n"
+  sleep 5
+}

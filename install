@@ -1,9 +1,22 @@
 #!/bin/bash
 
-# Use Z shell
-chsh -s /bin/zsh
+echo "Installing dotfiles"
+
+echo $'Run setup Visual Studio Code? (\033[1my\033[0m/n)'
+read setup_vscode
+
+if [[ $setup_vscode =~ ^[Yy]$ ]]
+then
+  echo "Setting up VS Code support"
+  # Symlink VS Code config files
+  rm ~/Library/'Application Support'/Code/User/keybindings.json
+  rm ~/Library/'Application Support'/Code/User/settings.json
+  ln -s ~/dotfiles/settings/vs_code/keybindings.json ~/Library/'Application Support'/Code/User/keybindings.json
+  ln -s ~/dotfiles/settings/vs_code/settings.json ~/Library/'Application Support'/Code/User/settings.json
+fi
 
 # Create symlinks from the home directory to any files in ~/dotfiles/dotfiles
+echo "Symlinking contents of ./dotfiles into home directory"
 regex="[^/]*$"
 for file in ~/dotfiles/dotfiles/.* # Only match hidden files
 do
@@ -12,33 +25,29 @@ do
     if [[ $file =~ $regex ]]
     then
       filename="${BASH_REMATCH[0]}"
-      rm ~/$filename
+
+      # remove the file if it already exists
+      if test -f "$HOME/$filename"; then
+        rm ~/$filename
+      fi
+
+      # symlink the file
       ln -s $file ~/$filename
     fi
   fi
 done
 
-# Symlink the scripts folder
-rm -rf ~/scripts
-ln -s ~/dotfiles/scripts ~/scripts
+# Create a .zsh_secrets file if one doesn't exist
+if ! test -f "$HOME/.zsh_secrets"
+ then
+  touch "$HOME/.zsh_secrets"
+fi
 
-# Symlink VS Code config files
-rm ~/Library/'Application Support'/Code/User/keybindings.json
-rm ~/Library/'Application Support'/Code/User/settings.json
-ln -s ~/dotfiles/settings/vs_code/keybindings.json ~/Library/'Application Support'/Code/User/keybindings.json
-ln -s ~/dotfiles/settings/vs_code/settings.json ~/Library/'Application Support'/Code/User/settings.json
+# Create a .zsh_environment_name file if one doesn't exist
+if ! test -f "$HOME/..zsh_environment_name"
+ then
+  touch "$HOME/.zsh_environment_name"
+  echo "ENVIRONMENT_NAME=\"desktop\"" >> "$HOME/.zsh_environment_name"
+fi
 
-# Symlink LaunchAgents
-regex="[^/]*$"
-for file in ~/dotfiles/launch_agents/*
-do
-  if [[ -f $file ]]
-  then
-    if [[ $file =~ $regex ]]
-    then
-      filename="${BASH_REMATCH[0]}"
-      rm ~/Library/LaunchAgents/$filename
-      ln -s $file ~/Library/LaunchAgents/$filename
-    fi
-  fi
-done
+echo "Done."

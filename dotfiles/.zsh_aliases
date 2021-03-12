@@ -1,41 +1,20 @@
 #!/bin/zsh
 
 # Edit and load dotfiles
-alias dotedit="code -n ~/dotfiles"
+alias dotedit="${EDITOR} -n ~/dotfiles"
+alias dotfiles="cd ~/dotfiles"
 alias load="source ~/.zshrc"
 
 # Navigation
 alias desk="cd ~/desktop"
-alias dot="cd ~/dotfiles"
-alias back="c HEAD~1"
-alias wp="cd ~/workplace"
-alias shiba="cd ~/workplace/SSMShibaService/src/SSMShibaService"
-alias tests="cd ~/workplace/SSMShibaServiceTests/src/SSMShibaServiceTests"
-alias canary="cd ~/workplace/SSMShibaServiceCanary/src/SSMShibaServiceCanary"
-alias se="cd ~/workplace/Singularity-Extensions/src/Singularity-Extensions"
-alias ss="cd ~/workplace/Saluki-Server/src/Saluki-Server"
 
-# Workspaces
-alias fe="cd ~/workplace/charismanspectfrontendlambda/src/charismanspectfrontendlambda"
-alias be="cd ~/workplace/charismanspectbackendlambda/src/charismanspectbackendlambda"
-alias wa="cd ~/workplace/charismanspectfrontendlambda/src/charismanspectwebapplication"
-
-# Shortcuts
-alias bb="brazil-build"
-alias bws="brazil ws"
-alias wsc="brazil ws create --name"
-alias wsu="brazil ws use -p"
-alias nds="ninja-dev-sync"
-alias al2="brazil ws use --platform AL2_x86_64"
-
-alias idea='open -na "IntelliJ IDEA.app"'
-
-alias st='open -a SourceTree .'
-
+# Git
 alias c="git checkout"
+alias d="git diff"
+alias s="git status"
+alias b="git branch"
 alias cb="git checkout -b"
 alias cm="git checkout mainline; git pull"
-alias cs="git checkout staging; git pull"
 alias co="git commit"
 alias del="git branch -D"
 alias ga="git add"
@@ -43,14 +22,22 @@ alias force="git push --force-with-lease"
 alias undo="git reset HEAD~1"
 alias amend="git commit -a --amend"
 alias amendnow="git commit -a --amend --date=\"now\""
+alias st='open -a SourceTree .'
 
-alias d="git diff"
-alias s="git status"
+# Open IntelliJ
+alias idea='open -na "IntelliJ IDEA.app"'
 
-alias b="git branch"
+# Amazon - shortcuts
+alias bb="brazil-build"
+alias bws="brazil ws"
+alias wsc="brazil ws create --name"
+alias wsu="brazil ws use -p"
+alias nds="ninja-dev-sync"
+alias al2="brazil ws use --platform AL2_x86_64"
+alias deployfe="wa && bb release && fe && ./sam package && ./sam deploy"
 
-alias nuke="bb clean && brazil ws clean && brazil ws sync --md && rm -rf build && rm -rf dtmp && bb release;"
-
-alias tool="ssh ec2-shiba-tool-pdx-64001.pdx4.amazon.com"
-
-alias awsg="aws --endpoint-url https://sonic.us-east-1.amazonaws.com"
+# Amazon - navigation
+alias wp="cd ~/workplace"
+alias fe="cd ~/workplace/charismanspectfrontendlambda/src/charismanspectfrontendlambda"
+alias be="cd ~/workplace/charismanspectbackendlambda/src/charismanspectbackendlambda"
+alias wa="cd ~/workplace/charismanspectfrontendlambda/src/charismanspectwebapplication"
