@@ -3,6 +3,12 @@
 # Change this to whatever text editor you use (code, vim, nano, etc.)
 EDITOR="idea"
 
+# Python
+if [[ $ENVIRONMENT_NAME == 'cloud-desktop' ]]
+then
+  EDITOR="vim"
+fi
+
 # Zsh config options
 zle_highlight+=(paste:none)
 

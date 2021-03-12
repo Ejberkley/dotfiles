@@ -1,7 +1,12 @@
 #!/bin/zsh
 
 # Edit and load dotfiles
-alias dotedit="${EDITOR} -n ~/dotfiles"
+if [[ $EDITOR == 'vim' ]]
+then
+  alias dotedit="vim ~/dotfiles/dotfiles/.zsh_aliases"
+else
+  alias dotedit="${EDITOR} -n ~/dotfiles"
+fi
 alias dotfiles="cd ~/dotfiles"
 alias load="source ~/.zshrc"
 
