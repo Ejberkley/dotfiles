@@ -108,4 +108,22 @@ update_tab_title_working() {
   echo -en "\e]1;🔴\u00a0\u00a0$(current_directory)\a"
 }
 
+update_tab_title() {
+  if [[ $ENVIRONMENT_NAME == 'cloud-desktop' ]]
+  then
+    echo -en "\e]1;🔶  $(current_directory)\a"
+  else
+    echo -en "\e]1;🔶  $(current_directory)\a"
+  fi
+}
+
+update_tab_title_working() {
+    if [[ $ENVIRONMENT_NAME == 'cloud-desktop' ]]
+  then
+    echo -en "\e]1;🔶  $(current_directory)\u00a0\u00a0🔴\a"
+  else
+    echo -en "\e]1;🔶  $(current_directory)\u00a0\u00a0🔴\a"
+  fi
+}
+
 PROMPT=$'$(prompt)'
