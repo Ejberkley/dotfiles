@@ -43,6 +43,7 @@ alias deployfe="wa && bb release && fe && ./sam package && ./sam deploy"
 
 # Amazon - navigation
 alias wp="cd ~/workplace"
-alias fe="cd ~/workplace/charismanspectfrontendlambda/src/charismanspectfrontendlambda"
-alias be="cd ~/workplace/charismanspectbackendlambda/src/charismanspectbackendlambda"
-alias wa="cd ~/workplace/charismanspectfrontendlambda/src/charismanspectwebapplication"
+alias fe="cd ~/workplace/CharismaNSpectFrontendLambda/src/CharismaNSpectFrontendLambda"
+alias be="cd ~/workplace/CharismaNSpectBackendLambda/src/CharismaNSpectBackendLambda"
+alias wa="cd ~/workplace/CharismaNSpectFrontendLambda/src/CharismaNSpectFrontendLambda"
+alias cli="cd ~/workplace/CharismaNSpectCli/src/CharismaNSpectCli"

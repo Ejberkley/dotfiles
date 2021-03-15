@@ -103,7 +103,7 @@ update_tab_title() {
   echo -en "\e]1;$(current_directory)\a"
 }
 
-# Display a diamond icon in the tab title if there is a currently running process
+# Display a  there is process
 update_tab_title_working() {
   echo -en "\e]1;🔴\u00a0\u00a0$(current_directory)\a"
 }
@@ -120,10 +120,11 @@ update_tab_title() {
 update_tab_title_working() {
     if [[ $ENVIRONMENT_NAME == 'cloud-desktop' ]]
   then
-    echo -en "\e]1;🔶  $(current_directory)\u00a0\u00a0🔴\a"
+    echo -en "\e]1;🔶  $(current_directory)\a"
   else
-    echo -en "\e]1;🔶  $(current_directory)\u00a0\u00a0🔴\a"
+  echo -en "\e]1;🔶  $(current_directory)\u00a0\u00a0🔴\a"
   fi
+  echo -en "\e]1;🔶  $(current_directory)\u00a0\u00a0🔴\a"
 }
 
 PROMPT=$'$(prompt)'
