@@ -19,3 +19,9 @@ if [[ $ENVIRONMENT_NAME == 'desktop' ]]
 then
   eval "$(pyenv init -)"
 fi
+
+if [[ $ENVIRONMENT_NAME == 'cloud-desktop' ]]
+then
+  export PATH=$HOME/.pyenv/bin:$PATH
+  eval "$(pyenv init -)"
+fi
