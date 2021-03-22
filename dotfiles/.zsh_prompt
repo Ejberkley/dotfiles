@@ -2,17 +2,6 @@
 
 setopt PROMPT_SUBST # enable function calls inside the prompt
 
-if [[ $ENVIRONMENT_NAME == 'cloud-desktop' ]]
-then
-  PROMPT_COLOR="35" # purple
-else
-  PROMPT_COLOR="34" # blue
-fi
-
-prompt() {
-  echo "\033[2m%*$(git_status) \033[0m\033[${PROMPT_COLOR}m\033[1m$(current_directory) \033[0m$ "
-}
-
 # Replace /Users/brennen/ with ~/
 current_directory() {
   current_directory=`/bin/pwd -P`
@@ -126,4 +115,11 @@ update_tab_title_working() {
   fi
 }
 
-PROMPT=$'$(prompt)'
+PROMPT=$'\033[2m%*$(git_status) \033[0m\033[35m\033[1m$(current_directory) \033[0m$ '
+
+if [[ $ENVIRONMENT_NAME == 'cloud-desktop' ]]
+then
+  PROMPT=$'%{\e[2m%}%*$(git_status) %{\e[0;35;1m%}$(current_directory) %{\e[0m%}$ ' # purple
+else
+  PROMPT=$'%{\e[2m%}%*$(git_status) %{\e[0;34;1m%}$(current_directory) %{\e[0m%}$ ' # blue
+fi
