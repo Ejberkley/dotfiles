@@ -54,6 +54,6 @@ alias cli="cd ~/workplace/CharismaNSpectCli/src/CharismaNSpectCli"
 # Amazon - cloud desktop shortcuts
 if [[ $ENVIRONMENT_NAME == 'cloud-desktop' ]]
 then
-alias covdir="cd /local/home/bberkle/workplace/CharismaNSpectBackendLambda/build/CharismaNSpectBackendLambda/CharismaNSpectBackendLambda-1.0/AL2_x86_64/DEV.STD.PTHREAD/build/brazil-unit-tests"
+alias covdir="cd /local/home/bberkle/workplace/CharismaNSpectBackendLambda/build/CharismaNSpectBackendLambda/CharismaNSpectBackendLambda-1.0/AL2_x86_64/DEV.STD.PTHREAD/build/brazil-documentation/coverage"
 alias serve="python3 -m http.server 8000"
 fi
