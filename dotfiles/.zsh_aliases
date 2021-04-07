@@ -50,3 +50,10 @@ alias bet="cd ~/workplace/CharismaNSpectBackendLambda/src/CharismaNSpectBackendL
 alias bem="cd ~/workplace/CharismaNSpectBackendLambda/src/CharismaNSpectModel"
 alias wa="cd ~/workplace/CharismaNSpectFrontendLambda/src/CharismaNSpectWebApplication"
 alias cli="cd ~/workplace/CharismaNSpectCli/src/CharismaNSpectCli"
+
+# Amazon - cloud desktop shortcuts
+if [[ $ENVIRONMENT_NAME == 'cloud-desktop' ]]
+then
+alias covdir="cd /local/home/bberkle/workplace/CharismaNSpectBackendLambda/build/CharismaNSpectBackendLambda/CharismaNSpectBackendLambda-1.0/AL2_x86_64/DEV.STD.PTHREAD/build/brazil-unit-tests"
+alias serve="python3 -m http.server 8000"
+fi
