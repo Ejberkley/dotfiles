@@ -9,6 +9,11 @@ current_directory() {
   if [[ $current_directory =~ "\/(users|Users)\/$user(.*)" ]]; then
     local current_directory="~${match[2]}"
   fi
+
+  # Dev desktop prompt
+  if [[ $current_directory =~ "\/local\/home/bberkle\/" ]]; then
+    local current_directory="~${match[2]}"
+  fi
   echo $current_directory
 }
 
