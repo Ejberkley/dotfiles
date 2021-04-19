@@ -12,7 +12,7 @@ current_directory() {
 
   # Dev desktop prompt
   if [[ $current_directory =~ "\/local\/home/bberkle(.*)" ]]; then
-    local current_directory="~${match[2]}"
+    local current_directory="~${match[1]}"
   fi
   echo $current_directory
 }
