@@ -50,6 +50,7 @@ alias bet="cd ~/workplace/CharismaNSpectBackendLambda/src/CharismaNSpectBackendL
 alias bem="cd ~/workplace/CharismaNSpectBackendLambda/src/CharismaNSpectModel"
 alias wa="cd ~/workplace/CharismaNSpectFrontendLambda/src/CharismaNSpectWebApplication"
 alias cli="cd ~/workplace/CharismaNSpectCli/src/CharismaNSpectCli"
+alias bmp="cd ~/workplace/CharismaBulkMetricsPublisher/src/CharismaBulkMetricsPublisher"
 
 # Amazon - cloud desktop shortcuts
 if [[ $ENVIRONMENT_NAME == 'cloud-desktop' ]]
