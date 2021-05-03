@@ -14,7 +14,7 @@
     80,
     120
   ],
-  "editor.tabSize": 2,
+  "editor.tabSize": 4,
   "editor.wordWrap": "on",
   "editor.wrappingIndent": "indent",
   "explorer.autoReveal": false,
@@ -100,5 +100,6 @@
   "debug.javascript.autoAttachFilter": "always",
   "extensions.ignoreRecommendations": true,
   "gitlens.currentLine.scrollable": false,
-  "typescript.autoClosingTags": true
+  "typescript.autoClosingTags": true,
+  "html.autoClosingTags": false
 }
