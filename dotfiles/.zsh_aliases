@@ -53,7 +53,7 @@ alias cli="cd ~/workplace/CharismaNSpectCli/src/CharismaNSpectCli"
 alias bmp="cd ~/workplace/CharismaBulkMetricsPublisher/src/CharismaBulkMetricsPublisher"
 alias cdk="cd ~/workplace/CharismaBulkMetricsPublisher/src/CharismaBulkMetricsPublisherCDK"
 alias lu="cd ~/workplace/CharismaBulkMetricsPublisher/src/CharismaLatencyMetricsUtils"
-alias trigger="cd ~/workplace/CharisCharismaNDicateTriggerLambdamaBulkMetricsPublisher/src/CharismaNDicateTriggerLambda"
+alias tl="cd ~/workplace/CharismaNDicateTriggerLambda/src/CharismaNDicateTriggerLambda"
 
 # Amazon - cloud desktop shortcuts
 if [[ $ENVIRONMENT_NAME == 'cloud-desktop' ]]
