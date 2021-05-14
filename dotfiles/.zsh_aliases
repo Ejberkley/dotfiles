@@ -29,6 +29,8 @@ alias amend="git commit -a --amend"
 alias amendnow="git commit -a --amend --date=\"now\""
 alias st='open -a SourceTree .'
 
+alias p='python3'
+
 # Open IntelliJ
 alias idea='open -na "IntelliJ IDEA.app"'
 
