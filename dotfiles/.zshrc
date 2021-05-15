@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 # Change this to whatever text editor you use (code, vim, nano, etc.)
-EDITOR="idea"
+EDITOR="code"
 
 # Python
 if [[ $ENVIRONMENT_NAME == 'cloud-desktop' ]]

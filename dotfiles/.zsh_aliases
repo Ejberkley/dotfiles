@@ -30,6 +30,10 @@ alias amendnow="git commit -a --amend --date=\"now\""
 alias st='open -a SourceTree .'
 
 alias p='python3'
+alias run="p run.py"
+alias i="p -i interactive.py"
+alias pu="git pull"
+alias pur="git pull; p run.py"
 
 # Open IntelliJ
 alias idea='open -na "IntelliJ IDEA.app"'
