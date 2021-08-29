@@ -27,43 +27,6 @@ alias force="git push --force-with-lease"
 alias undo="git reset HEAD~1"
 alias amend="git commit -a --amend"
 alias amendnow="git commit -a --amend --date=\"now\""
-alias st='open -a SourceTree .'
-
-alias p='python3'
-alias run="p run.py"
-alias i="p -i interactive.py"
-alias pu="git pull"
-alias pur="git pull; p run.py"
 
 # Open IntelliJ
 alias idea='open -na "IntelliJ IDEA.app"'
-
-# Amazon - shortcuts
-alias bb="brazil-build"
-alias bws="brazil ws"
-alias wsc="brazil ws create --name"
-alias wsu="brazil ws use -p"
-alias nds="ninja-dev-sync"
-alias al2="brazil ws use --platform AL2_x86_64"
-alias deployfe="wa && bb release && fe && ./sam package && ./sam deploy"
-
-# Amazon - navigation
-alias wp="cd ~/workplace"
-alias fe="cd ~/workplace/CharismaNSpectFrontendLambda/src/CharismaNSpectFrontendLambda"
-alias fet="cd ~/workplace/CharismaNSpectFrontendLambda/src/CharismaNSpectFrontendLambdaTests"
-alias be="cd ~/workplace/CharismaNSpectBackendLambda/src/CharismaNSpectBackendLambda"
-alias bet="cd ~/workplace/CharismaNSpectBackendLambda/src/CharismaNSpectBackendLambdaTests"
-alias bem="cd ~/workplace/CharismaNSpectBackendLambda/src/CharismaNSpectModel"
-alias wa="cd ~/workplace/CharismaNSpectFrontendLambda/src/CharismaNSpectWebApplication"
-alias cli="cd ~/workplace/CharismaNSpectCli/src/CharismaNSpectCli"
-alias bmp="cd ~/workplace/CharismaBulkMetricsPublisher/src/CharismaBulkMetricsPublisher"
-alias cdk="cd ~/workplace/CharismaBulkMetricsPublisher/src/CharismaBulkMetricsPublisherCDK"
-alias lu="cd ~/workplace/CharismaBulkMetricsPublisher/src/CharismaLatencyMetricsUtils"
-alias tl="cd ~/workplace/CharismaNDicateTriggerLambda/src/CharismaNDicateTriggerLambda"
-
-# Amazon - cloud desktop shortcuts
-if [[ $ENVIRONMENT_NAME == 'cloud-desktop' ]]
-then
-alias covdir="cd /local/home/bberkle/workplace/CharismaNSpectBackendLambda/build/CharismaNSpectBackendLambda/CharismaNSpectBackendLambda-1.0/AL2_x86_64/DEV.STD.PTHREAD/build/brazil-documentation/coverage"
-alias serve="python3 -m http.server 8000"
-fi
