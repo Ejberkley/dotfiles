@@ -27,6 +27,9 @@ alias force="git push --force-with-lease"
 alias undo="git reset HEAD~1"
 alias amend="git commit -a --amend"
 alias amendnow="git commit -a --amend --date=\"now\""
+alias ass="cd ~/assignments"
+alias p="python3"
+
 
 # Open IntelliJ
 alias idea='open -na "IntelliJ IDEA.app"'
